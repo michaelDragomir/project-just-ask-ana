@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 		'A website that you can go to and learn about different things that happen in the state like laws, education, health, and other important stuff.',
 	icons: {
 		icon: {
-			url: '/favicon.svg',
-			type: 'image/svg',
+			url: '/favicon.ico',
 		},
 	},
 };
