@@ -7,11 +7,11 @@ export default function Home() {
 		<>
 			<main className={styles.main}>
 				<div className={styles.description}>
-					<p>
-						Hello!!!!!!!!!!!!!
-						<code className={styles.code}>app/page.tsx</code>
-					</p>
+					<h1 className='text-3xl font-bold underline'>Hello world!</h1>
 					<div>
+						<button className='rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>
+							Save changes
+						</button>
 						<a
 							href='https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
 							target='_blank'
