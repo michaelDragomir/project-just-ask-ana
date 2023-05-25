@@ -1,100 +1,35 @@
-import Image from 'next/image';
-import Head from 'next/head';
-import styles from './page.module.scss';
+import Cards from '@/components/Cards';
+import CardItem from '@/components/CardItem';
+import styles from '@/styles/page.module.scss';
+import { DUMMYDATA } from '@/dummyData';
 
-export default function Home() {
+const HomePage = () => {
 	return (
 		<>
-			<main className={styles.main}>
-				<div className={styles.description}>
-					<p>
-						Hello!!!!!!!!!!!!!
-						<code className={styles.code}>app/page.tsx</code>
-					</p>
-					<div>
-						<a
-							href='https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-							target='_blank'
-							rel='noopener noreferrer'
-						>
-							By{' '}
-							<Image
-								src='/vercel.svg'
-								alt='Vercel Logo'
-								className={styles.vercelLogo}
-								width={100}
-								height={24}
-								priority
-							/>
-						</a>
+			<div className='bg-white'>
+				<div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8'>
+					<div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8'>
+						{DUMMYDATA.map((item) => {
+							return (
+								<div key={item.title} className='group'>
+									<div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
+										<h2 className='text-2xl font-bold tracking-tight text-gray-900'>
+											{item.title}
+										</h2>
+										<img
+											src='https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg'
+											alt='Tall slender porcelain bottle with natural clay textured body and cork stopper.'
+											className='h-full w-full object-cover object-center group-hover:opacity-75'
+										/>
+									</div>
+								</div>
+							);
+						})}
 					</div>
 				</div>
-
-				<div className={styles.center}>
-					<Image
-						className={styles.logo}
-						src='/next.svg'
-						alt='Next.js Logo'
-						width={180}
-						height={37}
-						priority
-					/>
-				</div>
-
-				<div className={styles.grid}>
-					<a
-						href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-						className={styles.card}
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<h2>
-							Docs <span>-&gt;</span>
-						</h2>
-						<p>Find in-depth information about Next.js features and API.</p>
-					</a>
-
-					<a
-						href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-						className={styles.card}
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<h2>
-							Learn <span>-&gt;</span>
-						</h2>
-						<p>
-							Learn about Next.js in an interactive course with&nbsp;quizzes!
-						</p>
-					</a>
-
-					<a
-						href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-						className={styles.card}
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<h2>
-							Templates <span>-&gt;</span>
-						</h2>
-						<p>Explore the Next.js 13 playground.</p>
-					</a>
-
-					<a
-						href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-						className={styles.card}
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<h2>
-							Deploy <span>-&gt;</span>
-						</h2>
-						<p>
-							Instantly deploy your Next.js site to a shareable URL with Vercel.
-						</p>
-					</a>
-				</div>
-			</main>
+			</div>
 		</>
 	);
-}
+};
+
+export default HomePage;
