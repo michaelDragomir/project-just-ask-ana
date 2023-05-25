@@ -1,6 +1,6 @@
 import '@/styles/globals.scss';
 import { Metadata } from 'next';
-import Test from '@/components/test';
+import Header from '@/components/Header';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className='test'>
-				<Test />
+				<Header />
 				{children}
 			</body>
 		</html>
