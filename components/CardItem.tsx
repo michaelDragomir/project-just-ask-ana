@@ -8,9 +8,8 @@ import Typography from '@mui/material/Typography';
 
 const CardItem = (props: any) => {
 	const { title } = props;
-	console.log('!!!!!!', title);
 	return (
-		<Card className='w-56 h-56'>
+		<Card>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
 					{title}
