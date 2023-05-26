@@ -21,12 +21,15 @@ const HomePage = () => {
 										<Cards>
 											<CardItem title={item.title}></CardItem>
 										</Cards>
+										{/* <div className='h-full w-full object-cover object-center border-2 border-rose-500'> */}
 										<Image
+											className='h-64 w-full object-cover object-center'
 											src={item.image}
 											alt='api images'
-											width={300}
-											height={300}
+											width={0}
+											height={0}
 										/>
+										{/* </div> */}
 									</div>
 								</div>
 							);
