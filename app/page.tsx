@@ -4,10 +4,6 @@ import Image from 'next/image';
 import CardItem from '@/components/CardItem';
 import Cards from '@/components/Cards';
 
-import styles from '@/styles/page.module.scss';
-
-// 'grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8'
-
 const HomePage = () => {
 	return (
 		<>
@@ -21,7 +17,6 @@ const HomePage = () => {
 										<Cards>
 											<CardItem title={item.title}></CardItem>
 										</Cards>
-										{/* <div className='h-full w-full object-cover object-center border-2 border-rose-500'> */}
 										<Image
 											className='h-64 w-full object-cover object-center'
 											src={item.image}
@@ -29,7 +24,6 @@ const HomePage = () => {
 											width={0}
 											height={0}
 										/>
-										{/* </div> */}
 									</div>
 								</div>
 							);
