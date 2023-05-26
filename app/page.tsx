@@ -1,25 +1,31 @@
-import Cards from '@/components/Cards';
-import CardItem from '@/components/CardItem';
-import styles from '@/styles/page.module.scss';
 import { DUMMYDATA } from '@/dummyData';
+
+import Image from 'next/image';
+import CardItem from '@/components/CardItem';
+import Cards from '@/components/Cards';
+
+import styles from '@/styles/page.module.scss';
+
+// 'grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8'
 
 const HomePage = () => {
 	return (
 		<>
 			<div className='bg-white'>
-				<div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8'>
-					<div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8'>
+				<div className='mx-auto sm:px-6 sm:py-8 lg:max-w-5xl flex flex-wrap justify-center items-center'>
+					<div className='grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3'>
 						{DUMMYDATA.map((item) => {
 							return (
-								<div key={item.title} className='group'>
-									<div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
-										<h2 className='text-2xl font-bold tracking-tight text-gray-900'>
-											{item.title}
-										</h2>
-										<img
-											src='https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg'
-											alt='Tall slender porcelain bottle with natural clay textured body and cork stopper.'
-											className='h-full w-full object-cover object-center group-hover:opacity-75'
+								<div key={item.title}>
+									<div className='w-64 hover:opacity-75 transition delay-100 drop-shadow-md border-2 border-gray-300 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 transition delay-100'>
+										<Cards>
+											<CardItem title={item.title}></CardItem>
+										</Cards>
+										<Image
+											src={item.image}
+											alt='api images'
+											width={300}
+											height={300}
 										/>
 									</div>
 								</div>
