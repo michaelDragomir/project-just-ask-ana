@@ -7,27 +7,31 @@ export const DUMMYDATA = [
 	{
 		id: '2',
 		title: 'The Cat API',
-		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
+		image: 'https://cdn2.thecatapi.com/images/di3.jpg',
 	},
 	{
 		id: '3',
 		title: 'The News API',
-		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
+		image:
+			'http://americanrecyclingca.com/wp-content/uploads/2011/01/shutterstock_186319661-300x281.jpg',
 	},
 	{
 		id: '4',
 		title: 'The Moive API',
-		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
+		image:
+			'https://www.shutterstock.com/image-vector/grunge-retro-cinema-poster-vector-260nw-207445648.jpg',
 		isFeatured: false,
 	},
 	{
 		id: '5',
 		title: 'The Weather API',
-		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
+		image:
+			'https://image.pbs.org/video-assets/K9njdWJ-asset-mezzanine-16x9-xIZaOc6.jpg?crop=384x215&?format=jpg',
 	},
 	{
 		id: '6',
 		title: 'Astronomy Pic of the Day API',
-		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
+		image:
+			'https://i.guim.co.uk/img/media/3f700968e805545183d897dc90835af81a6ad3d3/0_182_3534_2120/master/3534.jpg?width=300&quality=85&auto=format&fit=max&s=38db821819d3ab3ff159bdda914e7938',
 	},
 ];
