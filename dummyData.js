@@ -23,7 +23,7 @@ export const DUMMYDATA = [
 	},
 	{
 		id: '4',
-		title: 'The Moive API',
+		title: 'The Movie API',
 		image:
 			'https://www.shutterstock.com/image-vector/grunge-retro-cinema-poster-vector-260nw-207445648.jpg',
 		overlay: 'To infinity and beyond!',
