@@ -5,6 +5,7 @@ export const DUMMYDATA = [
 		image: 'https://randomuser.me/api/portraits/lego/3.jpg',
 		overlay: 'BOO!',
 		color: 'red',
+		url: 'random-user/',
 	},
 	{
 		id: '2',
@@ -12,6 +13,7 @@ export const DUMMYDATA = [
 		image: 'https://cdn2.thecatapi.com/images/di3.jpg',
 		overlay: 'Meow',
 		color: 'white',
+		url: 'the-cat/',
 	},
 	{
 		id: '3',
@@ -20,6 +22,7 @@ export const DUMMYDATA = [
 			'http://americanrecyclingca.com/wp-content/uploads/2011/01/shutterstock_186319661-300x281.jpg',
 		overlay: 'No news is good news',
 		color: 'white',
+		url: 'the-news/',
 	},
 	{
 		id: '4',
@@ -28,6 +31,7 @@ export const DUMMYDATA = [
 			'https://www.shutterstock.com/image-vector/grunge-retro-cinema-poster-vector-260nw-207445648.jpg',
 		overlay: 'To infinity and beyond!',
 		color: 'white',
+		url: 'the-movie/',
 	},
 	{
 		id: '5',
@@ -36,6 +40,7 @@ export const DUMMYDATA = [
 			'https://image.pbs.org/video-assets/K9njdWJ-asset-mezzanine-16x9-xIZaOc6.jpg?crop=384x215&?format=jpg',
 		overlay: '72 and sunny',
 		color: 'white',
+		url: 'the-weather/',
 	},
 	{
 		id: '6',
@@ -44,5 +49,6 @@ export const DUMMYDATA = [
 			'https://i.guim.co.uk/img/media/3f700968e805545183d897dc90835af81a6ad3d3/0_182_3534_2120/master/3534.jpg?width=300&quality=85&auto=format&fit=max&s=38db821819d3ab3ff159bdda914e7938',
 		overlay: 'We are a mere speck',
 		color: 'white',
+		url: 'astronomy-pic-of-day/',
 	},
 ];

@@ -3,6 +3,7 @@ import { DUMMYDATA } from '@/dummyData';
 import Image from 'next/image';
 import CardItem from '@/components/CardItem';
 import Cards from '@/components/Cards';
+import Link from 'next/link';
 
 const HomePage = () => {
 	return (
@@ -18,13 +19,15 @@ const HomePage = () => {
 											<Cards>
 												<CardItem title={item.title}></CardItem>
 											</Cards>
-											<Image
-												className='h-64 w-full object-cover object-center hover:opacity-50 transition delay-100'
-												src={item.image}
-												alt='api images'
-												width={0}
-												height={0}
-											/>
+											<Link href={item.url}>
+												<Image
+													className='h-64 w-full object-cover object-center hover:opacity-50 transition delay-100'
+													src={item.image}
+													alt='api images'
+													width={0}
+													height={0}
+												/>
+											</Link>
 										</div>
 									</div>
 								</>
