@@ -14,7 +14,7 @@ const HomePage = () => {
 							return (
 								<>
 									<div key={item.title}>
-										<div className='w-64 shadow-lg shadow-slate-400 border-2 border-gray-300 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200'>
+										<div className='w-64 shadow-lg shadow-slate-500 border-gray-300 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200'>
 											<Cards>
 												<CardItem title={item.title}></CardItem>
 											</Cards>
@@ -26,7 +26,7 @@ const HomePage = () => {
 												height={0}
 											/>
 											<div className='relative opacity-0 hover:opacity-100 transition delay-100'>
-												<div className='text-2xl justify-center flex items-end rounded-lg h-64 w-64 bg-blue absolute bottom-0'>
+												<div className='text-2xl justify-center flex items-end h-64 w-64 bg-blue absolute bottom-0'>
 													<span className='animate-slideUp'>
 														{item.overlay}
 													</span>
