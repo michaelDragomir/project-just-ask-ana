@@ -17,16 +17,6 @@ module.exports = {
 				passionBlue: '#617073',
 				lightGrey: '#D0D3D4',
 			},
-			animation: {
-				slideUp: 'slideUp 1s ease-in-out infinite',
-			},
-			keyframes: {
-				slideUp: {
-					'0%': { transform: 'translateY(-100px)' },
-					'50%': { transform: 'translateY(0px)' },
-					'100%': { transform: 'translateY(-10px)' },
-				},
-			},
 		},
 	},
 	plugins: [],
