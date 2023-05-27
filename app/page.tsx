@@ -19,17 +19,17 @@ const HomePage = () => {
 												<CardItem title={item.title}></CardItem>
 											</Cards>
 											<Image
-												className='h-64 w-full object-cover object-center hover:opacity-75 transition delay-100'
+												className='h-64 w-full object-cover object-center transition delay-100'
 												src={item.image}
 												alt='api images'
 												width={0}
 												height={0}
 											/>
-											<div className='relative opacity-0 hover:opacity-100 transition delay-100'>
-												<div className='text-2xl justify-center flex items-end h-64 w-64 bg-blue absolute bottom-0'>
-													<span className='animate-slideUp'>
+											<div className='relative opacity-0 group hover:opacity-100 transition delay-100 duration-300'>
+												<div className='text-[44px] font-sans text-rose-800 text-2xl justify-center flex items-end h-64 w-64 bg-blue absolute bottom-0'>
+													<div className='h-full w-full hover:animate-slideUp text-center'>
 														{item.overlay}
-													</span>
+													</div>
 												</div>
 											</div>
 										</div>
