@@ -26,8 +26,10 @@ const HomePage = () => {
 												height={0}
 											/>
 											<div className='relative opacity-0 hover:opacity-100 transition delay-100'>
-												<div className='rounded-lg z-0 h-64 w-64 bg-blue absolute bottom-0 text-center'>
-													{item.overlay}
+												<div className='text-2xl justify-center flex items-end rounded-lg h-64 w-64 bg-blue absolute bottom-0'>
+													<span className='animate-slideUp'>
+														{item.overlay}
+													</span>
 												</div>
 											</div>
 										</div>
