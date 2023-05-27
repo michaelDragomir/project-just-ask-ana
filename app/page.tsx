@@ -19,19 +19,12 @@ const HomePage = () => {
 												<CardItem title={item.title}></CardItem>
 											</Cards>
 											<Image
-												className='h-64 w-full object-cover object-center hover:opacity-75 transition delay-100'
+												className='h-64 w-full object-cover object-center hover:opacity-50 transition delay-100'
 												src={item.image}
 												alt='api images'
 												width={0}
 												height={0}
 											/>
-											<div className='relative opacity-0 hover:opacity-100 transition delay-100'>
-												<div className='text-2xl justify-center flex items-end h-64 w-64 bg-blue absolute bottom-0'>
-													<span className='animate-slideUp'>
-														{item.overlay}
-													</span>
-												</div>
-											</div>
 										</div>
 									</div>
 								</>
