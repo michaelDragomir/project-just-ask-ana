@@ -1,5 +1,5 @@
 const theWeatherHomePage = () => {
-	return <dv>The Weather HP</dv>;
+	return <div>The Weather HP</div>;
 };
 
 export default theWeatherHomePage;
