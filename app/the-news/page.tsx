@@ -1,5 +1,5 @@
 const theNewsHomePage = () => {
-	return <dv>The News HP</dv>;
+	return <div>The News HP</div>;
 };
 
 export default theNewsHomePage;
