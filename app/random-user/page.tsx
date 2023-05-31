@@ -6,15 +6,18 @@ async function fetchUsers() {
 
 //TO DO:
 //create an typscript interface
-
 const RandomUserHomePage = async () => {
 	const getUsers = await fetchUsers();
 	const { results } = getUsers;
 
+	interface Flattened {
+		[key: string]: any;
+	}
+
 	console.log('####', results);
 
 	const flattenObject = (obj: any) => {
-		let flattened: any[] = [];
+		const flattened: Flattened = {};
 
 		Object.keys(obj).forEach((key) => {
 			const value = obj[key];
