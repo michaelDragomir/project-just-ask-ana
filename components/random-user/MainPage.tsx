@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const MainPage = () => {
 	type Location = any;
 
 	const [users, setUsers] = useState<any>([]);
-	const [flattenedLocations, setFlattenedLocations] = useState({
+	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
 		data: [],
 	});
@@ -14,21 +14,7 @@ const MainPage = () => {
 	console.log('-----users-----', users);
 	console.log('-----flattenedLocations-----', flattenedLocations);
 
-	const flattenLocationObject = (locations: Location[]) => {
-		const data = [];
-		for (const { street, coordinates, timezone, ...rest } of locations)
-			data.push({
-				...rest,
-				name: street.name,
-				number: street.number,
-				latitude: coordinates.latitude,
-				longitude: coordinates.longitude,
-			});
-		const flattenedLocationHeaders = getObjectKeys(data[0]);
-		return { header: flattenedLocationHeaders, data };
-	};
-
-	const getObjectKeys = (obj: any) => {
+	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
 
 		Object.keys(obj).forEach((objectKey) => {
@@ -40,7 +26,24 @@ const MainPage = () => {
 			}
 		});
 		return objectKeys;
-	};
+	}, []);
+
+	const flattenLocationObject = useCallback(
+		(locations: Location[]) => {
+			const data = [];
+			for (const { street, coordinates, timezone, ...rest } of locations)
+				data.push({
+					...rest,
+					name: street.name,
+					number: street.number,
+					latitude: coordinates.latitude,
+					longitude: coordinates.longitude,
+				});
+			const flattenedLocationHeaders = getObjectKeys(data[0]);
+			return { header: flattenedLocationHeaders, data };
+		},
+		[getObjectKeys],
+	);
 
 	useEffect(() => {
 		const fetchPeople = async () => {
@@ -50,12 +53,12 @@ const MainPage = () => {
 			setUsers(data);
 
 			const ourFlattenedLocations = flattenLocationObject(
-				results.map(({ location }: any) => location),
+				results.map(({ location }: Location) => location),
 			);
 			setFlattenedLocations(ourFlattenedLocations);
 		};
 		fetchPeople();
-	}, []);
+	}, [flattenLocationObject]);
 
 	return (
 		<>
