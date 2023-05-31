@@ -2,19 +2,9 @@
 
 import { useState, useEffect } from 'react';
 
-// async function fetchUsers() {
-// 	const response = await fetch('https://randomuser.me/api/');
-// 	const data = await response.json();
-// 	const { results } = data;
-// 	return results;
-// }
-
-//TO DO:
-//create an typscript interface and fix that error.
-// build a table out.
-
 const MainPage = () => {
 	type Location = any;
+
 	const [users, setUsers] = useState<any>([]);
 	const [flattenedLocations, setFlattenedLocations] = useState({
 		headers: [],
@@ -52,28 +42,6 @@ const MainPage = () => {
 		return objectKeys;
 	};
 
-	// const flattenObject = useCallback((obj: any) => {
-	// 	let flattened: any[] = [];
-
-	// 	Object.keys(obj).forEach((key) => {
-	// 		const value = obj[key];
-
-	// 		if (
-	// 			typeof value === 'object' &&
-	// 			value !== null &&
-	// 			!Array.isArray(value)
-	// 		) {
-	// 			Object.assign(flattened, flattenObject(value));
-	// 		} else {
-	// 			flattened[key] = value;
-	// 		}
-	// 	});
-
-	// 	console.log('flattened', flattened);
-
-	// 	return flattened;
-	// }, []);
-
 	useEffect(() => {
 		const fetchPeople = async () => {
 			const response = await fetch('https://randomuser.me/api/?results=3');
@@ -82,7 +50,7 @@ const MainPage = () => {
 			setUsers(data);
 
 			const ourFlattenedLocations = flattenLocationObject(
-				results.map(({ location }) => location),
+				results.map(({ location }: any) => location),
 			);
 			setFlattenedLocations(ourFlattenedLocations);
 		};
