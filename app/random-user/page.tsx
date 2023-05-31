@@ -1,51 +1,46 @@
-async function fetchUsers() {
-	const response = await fetch('https://randomuser.me/api/');
-	const data = await response.json();
-	return data;
-}
+import MainPage from '@/components/random-user/MainPage';
+// async function fetchUsers() {
+// 	const response = await fetch('https://randomuser.me/api/');
+// 	const data = await response.json();
+// 	const { results } = data;
+// 	return results;
+// }
 
 //TO DO:
-//create an typscript interface
-const RandomUserHomePage = async () => {
-	const getUsers = await fetchUsers();
-	const { results } = getUsers;
+//create an typscript interface and fix that error.
+// build a table out.
+// flatten certain objects
+const RandomUserHomePage = () => {
+	// const getUsers = await fetchUsers();
 
-	interface Flattened {
-		[key: string]: any;
-	}
+	// const flattenObject = (obj: any) => {
+	// 	let flattened: any[] = [];
 
-	console.log('####', results);
+	// 	Object.keys(obj).forEach((key) => {
+	// 		const value = obj[key];
 
-	const flattenObject = (obj: any) => {
-		const flattened: Flattened = {};
+	// 		if (
+	// 			typeof value === 'object' &&
+	// 			value !== null &&
+	// 			!Array.isArray(value)
+	// 		) {
+	// 			Object.assign(flattened, flattenObject(value));
+	// 		} else {
+	// 			flattened[key] = value;
+	// 		}
+	// 	});
 
-		Object.keys(obj).forEach((key) => {
-			const value = obj[key];
+	// 	console.log('flattened', flattened);
 
-			if (
-				typeof value === 'object' &&
-				value !== null &&
-				!Array.isArray(value)
-			) {
-				Object.assign(flattened, flattenObject(value));
-			} else {
-				flattened[key] = value;
-			}
-		});
+	// 	return flattened;
+	// };
 
-		console.log('flattened', flattened);
-
-		return flattened;
-	};
-
-	flattenObject(results);
+	// flattenObject(getUsers);
 
 	return (
 		<>
 			<div>
-				{results.map((item: any) => {
-					return <div key={item.name.first}>{item.name.first}</div>;
-				})}
+				<MainPage />
 			</div>
 		</>
 	);

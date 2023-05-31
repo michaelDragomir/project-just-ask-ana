@@ -5,10 +5,7 @@ export default function AboutLayout({
 }) {
 	return (
 		<>
-			<div className='border-2 border-red'>
-				<h1>Test</h1>
-				{children}
-			</div>
+			<div className='border-2 border-red'>{children}</div>
 		</>
 	);
 }
