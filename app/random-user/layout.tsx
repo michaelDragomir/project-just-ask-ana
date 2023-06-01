@@ -5,7 +5,7 @@ export default function AboutLayout({
 }) {
 	return (
 		<>
-			<div className='border-2 border-red'>{children}</div>
+			<div>{children}</div>
 		</>
 	);
 }

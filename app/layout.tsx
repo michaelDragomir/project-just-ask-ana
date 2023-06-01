@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className='bg-passionBlue border-2 border-sky-500'>
+			<body className='bg-slate-700 border-2 border-sky-500'>
 				<Header />
 				{children}
 			</body>

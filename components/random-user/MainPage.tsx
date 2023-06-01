@@ -61,11 +61,13 @@ const MainPage = () => {
 
 	return (
 		<>
-			<table className='table-fixed border-collapse'>
+			<table className='mx-auto table-fixed border-collapse border-separate border-spacing-2 border border-slate-500'>
 				<thead>
 					<tr>
 						{headers.map((location: any, idx: any) => (
-							<th key={idx}>{location}</th>
+							<th className='border-slate-600' key={idx}>
+								{location}
+							</th>
 						))}
 					</tr>
 				</thead>
@@ -73,7 +75,9 @@ const MainPage = () => {
 					{data.map((item: any, idx: any) => (
 						<tr key={idx}>
 							{headers.map((header: any, idx: any) => (
-								<td key={idx}>{item[header]}</td>
+								<td className='border border-slate-700' key={idx}>
+									{item[header]}
+								</td>
 							))}
 						</tr>
 					))}

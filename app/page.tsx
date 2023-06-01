@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 const HomePage = () => {
 	return (
-		<div className='bg-grey h-screen'>
-			<header className='mx-auto w-3/4 h-auto pt-4 text-2xl text-center text-slate-600'>
+		<div className='bg-slate-400 h-screen'>
+			<header className='mx-auto w-3/4 h-auto pt-4 text-2xl text-center text-slate-700'>
 				<div className='leading-10 text-'>
 					<h2>
 						A comprehensive Next.js project that explores practical data

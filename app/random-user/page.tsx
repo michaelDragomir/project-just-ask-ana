@@ -3,7 +3,7 @@ import MainPage from '@/components/random-user/MainPage';
 const RandomUserHomePage = () => {
 	return (
 		<>
-			<div>
+			<div className='text-center mx-auto'>
 				<MainPage />
 			</div>
 		</>
