@@ -6,10 +6,11 @@ const MainPage = () => {
 	type Location = any;
 
 	// add a search button that filters for that specific search value
+
+	//make a drop down where they can sort by [...headers]
 	// make it clickable to select a row - takes you to user specific data.
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
-	// refactor this code..granularize
-
+	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
@@ -17,6 +18,7 @@ const MainPage = () => {
 	});
 
 	const { headers, data } = flattenedLocations;
+	console.log('---input---', inputFieldValue);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -67,14 +69,25 @@ const MainPage = () => {
 		fetchPeople();
 	}, []);
 
-	const refectchDataHandler = () => {
+	const refetchDataHandler = () => {
 		fetchPeople();
 	};
 
 	return (
 		<>
-			<button type='button' onClick={refectchDataHandler}>
-				Refectch Data!
+			<input
+				className='mr-3'
+				type='text'
+				value={inputFieldValue}
+				onChange={(e) => setInputFieldValue(e.target.value)}
+				placeholder='search table'
+			></input>
+			<button
+				type='button'
+				className='mb-3 uppercase rounded-lg bg-neutral-400 hover:bg-darkGrey transition delay-100 p-2'
+				onClick={refetchDataHandler}
+			>
+				Refetch Data
 			</button>
 			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
