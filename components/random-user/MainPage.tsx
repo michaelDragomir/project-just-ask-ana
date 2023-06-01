@@ -5,6 +5,13 @@ import { useState, useEffect, useCallback } from 'react';
 const MainPage = () => {
 	type Location = any;
 
+	//TO DO:
+	// add a refetch button - it refetches the data
+	// add a search button that filters for that specific search value
+	// make it clickable to select a row - takes you to user specific data.
+	// add a modal - saying..click on header to sort..click on a row to take you to specific user
+	// refactor this code..granularize
+
 	const [users, setUsers] = useState<any>([]);
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
@@ -33,7 +40,7 @@ const MainPage = () => {
 			for (const { street, coordinates, timezone, ...rest } of locations)
 				data.push({
 					...rest,
-					name: street.name,
+					street_name: street.name,
 					number: street.number,
 					latitude: coordinates.latitude,
 					longitude: coordinates.longitude,
@@ -46,26 +53,26 @@ const MainPage = () => {
 
 	useEffect(() => {
 		const fetchPeople = async () => {
-			const response = await fetch('https://randomuser.me/api/?results=3');
+			const response = await fetch('https://randomuser.me/api/?results=15');
 			const data = await response.json();
 			const { results } = data;
 			setUsers(results);
 
-			const ourFlattenedLocations = flattenLocationObject(
+			const getFlattenedLocations = flattenLocationObject(
 				results.map(({ location }: Location) => location),
 			);
-			setFlattenedLocations(ourFlattenedLocations);
+			setFlattenedLocations(getFlattenedLocations);
 		};
 		fetchPeople();
 	}, [flattenLocationObject]);
 
 	return (
 		<>
-			<table className='mx-auto table-fixed border-collapse border-separate border-spacing-2 border border-slate-500'>
+			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
-					<tr>
+					<tr className='bg-slate-400'>
 						{headers.map((location: any, idx: any) => (
-							<th className='border-slate-600' key={idx}>
+							<th className='border-slate-600 border px-7' key={idx}>
 								{location}
 							</th>
 						))}
@@ -75,7 +82,7 @@ const MainPage = () => {
 					{data.map((item: any, idx: any) => (
 						<tr key={idx}>
 							{headers.map((header: any, idx: any) => (
-								<td className='border border-slate-700' key={idx}>
+								<td className='border border-slate-600' key={idx}>
 									{item[header]}
 								</td>
 							))}
