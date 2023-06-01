@@ -11,8 +11,7 @@ const MainPage = () => {
 		data: [],
 	});
 
-	console.log('-----users-----', users);
-	console.log('-----flattenedLocations-----', flattenedLocations);
+	const { headers, data } = flattenedLocations;
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -40,7 +39,7 @@ const MainPage = () => {
 					longitude: coordinates.longitude,
 				});
 			const flattenedLocationHeaders = getObjectKeys(data[0]);
-			return { header: flattenedLocationHeaders, data };
+			return { headers: flattenedLocationHeaders, data };
 		},
 		[getObjectKeys],
 	);
@@ -50,7 +49,7 @@ const MainPage = () => {
 			const response = await fetch('https://randomuser.me/api/?results=3');
 			const data = await response.json();
 			const { results } = data;
-			setUsers(data);
+			setUsers(results);
 
 			const ourFlattenedLocations = flattenLocationObject(
 				results.map(({ location }: Location) => location),
@@ -62,37 +61,24 @@ const MainPage = () => {
 
 	return (
 		<>
-			<div>
-				{/* {users.map((item: any) => {
-					return <div key={item.city}>{item.location.city}</div>;
-				})} */}
-				<table className='table-auto'>
-					<thead>
-						<tr>
-							<th>Song</th>
-							<th>Artist</th>
-							<th>Year</th>
+			<table className='table-fixed border-collapse'>
+				<thead>
+					<tr>
+						{headers.map((location: any, idx: any) => (
+							<th key={idx}>{location}</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{data.map((item: any, idx: any) => (
+						<tr key={idx}>
+							{headers.map((header: any, idx: any) => (
+								<td key={idx}>{item[header]}</td>
+							))}
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-							<td>Malcolm Lockyer</td>
-							<td>1961</td>
-						</tr>
-						<tr>
-							<td>Witchy Woman</td>
-							<td>The Eagles</td>
-							<td>1972</td>
-						</tr>
-						<tr>
-							<td>Shining Star</td>
-							<td>Earth, Wind, and Fire</td>
-							<td>1975</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+					))}
+				</tbody>
+			</table>
 		</>
 	);
 };
