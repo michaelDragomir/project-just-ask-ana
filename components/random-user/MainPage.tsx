@@ -2,6 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
+const HEADERS = [
+	'city',
+	'state',
+	'country',
+	'postcode',
+	'street name',
+	'number',
+	'latitude',
+	'longitude',
+];
+
 const MainPage = () => {
 	type Location = any;
 
@@ -14,6 +25,7 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
+	// console.log('----headers-----', headers);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -56,9 +68,11 @@ const MainPage = () => {
 		const data = await response.json();
 		const { results } = data;
 		setUsers(results);
+
 		const getFlattenedLocations = flattenLocationObject(
 			results.map(({ location }: Location) => location),
 		);
+
 		setFlattenedLocations(getFlattenedLocations);
 	};
 
@@ -70,22 +84,33 @@ const MainPage = () => {
 		});
 	};
 
-	const sortingHeaders = [
-		'city',
-		'state',
-		'country',
-		'postcode',
-		'street name',
-		'number',
-		'latitude',
-		'longitude',
-	];
-
-	const sortingOptions = sortingHeaders.map((item: any) => (
+	const sortingOptions = HEADERS.map((item: any) => (
 		<option value={item} key={item}>
 			{item}
 		</option>
 	));
+
+	//getting corect data sort.
+	// it overrides original array..so need to make a copy of it...
+
+	//make a copy of the ne fetchedHeaders and new data.
+	//if  value of item[idx] = sortingHeaders[idx]
+	const sortHandler = () => {
+		const flattenedLocationsCopy = {
+			...flattenedLocations,
+			data: [...flattenedLocations.data],
+		};
+		const { data } = flattenedLocationsCopy;
+
+		const test = data.map((item: any) => item.city);
+		const sortTest = test.sort();
+		console.log('----sortTest----', sortTest);
+
+		const blah = HEADERS.map((item) => item);
+		console.log('----blah----', blah);
+	};
+
+	console.log('----sortHandler----', sortHandler());
 
 	useEffect(() => {
 		fetchPeople();
