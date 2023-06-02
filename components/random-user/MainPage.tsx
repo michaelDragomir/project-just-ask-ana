@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from 'react';
 const MainPage = () => {
 	type Location = any;
 
-	//make a drop down where they can sort by [...headers]
 	// make it clickable to select a row - takes you to user specific data.
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
@@ -65,11 +64,28 @@ const MainPage = () => {
 
 	const getfilteredRows = (rows: any[], searchInputValue: string) => {
 		return rows.filter((row: any) => {
-			return Object.values(row).some((s: any) =>
-				('' + s).toLowerCase().includes(searchInputValue),
+			return Object.values(row).some((text: any) =>
+				('' + text).toLowerCase().includes(searchInputValue),
 			);
 		});
 	};
+
+	const sortingHeaders = [
+		'city',
+		'state',
+		'country',
+		'postcode',
+		'street name',
+		'number',
+		'latitude',
+		'longitude',
+	];
+
+	const sortingOptions = sortingHeaders.map((item: any) => (
+		<option value={item} key={item}>
+			{item}
+		</option>
+	));
 
 	useEffect(() => {
 		fetchPeople();
@@ -81,6 +97,12 @@ const MainPage = () => {
 
 	return (
 		<>
+			<div className='border'>
+				<label className='mr-2' htmlFor='locaions'>
+					Sort by:
+				</label>
+				<select id='location'>{sortingOptions}</select>
+			</div>
 			<input
 				className='mr-3'
 				type='text'
@@ -98,7 +120,7 @@ const MainPage = () => {
 			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
 					<tr className='bg-slate-400'>
-						{headers.map((location: any, idx: any) => (
+						{headers.map((location: any, idx: number) => (
 							<th className='border-slate-600 border px-7' key={idx}>
 								{location}
 							</th>
@@ -106,15 +128,17 @@ const MainPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{getfilteredRows(data, inputFieldValue).map((item: any, idx: any) => (
-						<tr key={idx}>
-							{headers.map((header: any, idx: any) => (
-								<td className='border border-slate-600' key={idx}>
-									{item[header]}
-								</td>
-							))}
-						</tr>
-					))}
+					{getfilteredRows(data, inputFieldValue).map(
+						(item: any, idx: number) => (
+							<tr key={idx}>
+								{headers.map((header: any, idx: any) => (
+									<td className='border border-slate-600' key={idx}>
+										{item[header]}
+									</td>
+								))}
+							</tr>
+						),
+					)}
 				</tbody>
 			</table>
 		</>
