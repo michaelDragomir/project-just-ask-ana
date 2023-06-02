@@ -5,9 +5,8 @@ import { useState, useEffect, useCallback } from 'react';
 const MainPage = () => {
 	type Location = any;
 
-	// add a search button that filters for that specific search value
-
 	//make a drop down where they can sort by [...headers]
+
 	// make it clickable to select a row - takes you to user specific data.
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
@@ -16,9 +15,7 @@ const MainPage = () => {
 		headers: [],
 		data: [],
 	});
-
 	const { headers, data } = flattenedLocations;
-	console.log('---input---', inputFieldValue);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -53,9 +50,11 @@ const MainPage = () => {
 
 	const fetchPeople = async () => {
 		const response = await fetch('https://randomuser.me/api/?results=15');
+
 		if (!response.ok) {
-			throw new Error('no fetchy');
+			throw new Error('Problem fetching data');
 		}
+
 		const data = await response.json();
 		const { results } = data;
 		setUsers(results);
@@ -63,6 +62,14 @@ const MainPage = () => {
 			results.map(({ location }: Location) => location),
 		);
 		setFlattenedLocations(getFlattenedLocations);
+	};
+
+	const getfilteredRows = (rows: any[], searchInputValue: string) => {
+		return rows.filter((row: any) => {
+			return Object.values(row).some((s: any) =>
+				(' ' + s).toLowerCase().includes(searchInputValue),
+			);
+		});
 	};
 
 	useEffect(() => {
@@ -100,7 +107,7 @@ const MainPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{data.map((item: any, idx: any) => (
+					{getfilteredRows(data, inputFieldValue).map((item: any, idx: any) => (
 						<tr key={idx}>
 							{headers.map((header: any, idx: any) => (
 								<td className='border border-slate-600' key={idx}>
