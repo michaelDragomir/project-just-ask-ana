@@ -95,22 +95,19 @@ const MainPage = () => {
 
 	//make a copy of the ne fetchedHeaders and new data.
 	//if  value of item[idx] = sortingHeaders[idx]
-	const sortHandler = () => {
+	const sortHandler = (sortKey: any) => {
 		const flattenedLocationsCopy = {
 			...flattenedLocations,
 			data: [...flattenedLocations.data],
 		};
-		const { data } = flattenedLocationsCopy;
+		const { data, headers } = flattenedLocationsCopy;
 
-		const test = data.map((item: any) => item.city);
+		const test = data.map((item: any, idx: any) => item[sortKey]);
 		const sortTest = test.sort();
 		console.log('----sortTest----', sortTest);
-
-		const blah = HEADERS.map((item) => item);
-		console.log('----blah----', blah);
 	};
 
-	console.log('----sortHandler----', sortHandler());
+	console.log('----sortHandler----', sortHandler('number'));
 
 	useEffect(() => {
 		fetchPeople();
