@@ -66,7 +66,7 @@ const MainPage = () => {
 	const getfilteredRows = (rows: any[], searchInputValue: string) => {
 		return rows.filter((row: any) => {
 			return Object.values(row).some((s: any) =>
-				(' ' + s).toLowerCase().includes(searchInputValue),
+				('' + s).toLowerCase().includes(searchInputValue),
 			);
 		});
 	};
