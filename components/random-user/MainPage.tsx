@@ -6,7 +6,6 @@ const MainPage = () => {
 	type Location = any;
 
 	//make a drop down where they can sort by [...headers]
-
 	// make it clickable to select a row - takes you to user specific data.
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
