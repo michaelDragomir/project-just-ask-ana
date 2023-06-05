@@ -2,26 +2,21 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-// const HEADERS = [
-// 	'Sort By:',
-// 	'city',
-// 	'state',
-// 	'country',
-// 	'postcode',
-// 	'street name',
-// 	'number',
-// 	'latitude',
-// 	'longitude',
-// ];
+enum SortingDirection {
+	ASCENDING = 'ASCENDING',
+	DESCENDING = 'DESCENDING',
+	UNSORTED = 'UNSORTED',
+}
 
 const MainPage = () => {
 	type Location = any;
 
 	// make it clickable to select a row - takes you to user specific data.
-
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
+
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
+	const [sortingDirection, setSortingDirection] = useState<any>({});
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
 		data: [],
@@ -85,19 +80,46 @@ const MainPage = () => {
 		});
 	};
 
-	const sortData = (data: any, sortKey: any) => {
+	const sortData = (
+		data: any,
+		sortKey: any,
+		sortingDirection: SortingDirection,
+	) => {
 		data.sort((a: any, b: any) => {
 			const sortA = a[sortKey];
 			const sortB = b[sortKey];
 
-			if (sortA < sortB) {
-				return -1;
+			if (
+				sortingDirection === SortingDirection.ASCENDING ||
+				sortingDirection === SortingDirection.UNSORTED
+			) {
+				if (sortA < sortB) {
+					return -1;
+				}
+				if (sortA > sortB) {
+					return 1;
+				}
+				return 0;
+			} else {
+				if (sortA > sortB) {
+					return -1;
+				}
+				if (sortA < sortB) {
+					return 1;
+				}
+				return 0;
 			}
-			if (sortA > sortB) {
-				return 1;
-			}
-			return 0;
 		});
+	};
+
+	const getNextSortingDirection = (sortingDirection: SortingDirection) => {
+		if (
+			sortingDirection === SortingDirection.UNSORTED ||
+			sortingDirection === SortingDirection.ASCENDING
+		) {
+			return SortingDirection.DESCENDING;
+		}
+		return SortingDirection.ASCENDING;
 	};
 
 	const sortColumn = (sortKey: any) => {
@@ -106,9 +128,19 @@ const MainPage = () => {
 			data: [...flattenedLocations.data],
 		};
 		const { data } = flattenedLocationsCopy;
+		const currentSortingDirection = sortingDirection[sortKey];
 
-		sortData(data, sortKey);
+		sortData(data, sortKey, currentSortingDirection);
+		const nextSortingDirection = getNextSortingDirection(
+			currentSortingDirection,
+		);
+
+		const newSortingDirections = { ...sortingDirection };
+
+		newSortingDirections[sortKey] = nextSortingDirection;
+
 		setFlattenedLocations(flattenedLocationsCopy);
+		setSortingDirection(newSortingDirections);
 	};
 
 	useEffect(() => {
@@ -121,18 +153,6 @@ const MainPage = () => {
 
 	return (
 		<>
-			<div className='border'>
-				<label className='mr-2' htmlFor='locations'>
-					Sort by:
-				</label>
-				{headers.map((item: any, idx: number) => (
-					<select key={idx} id='location' onClick={() => sortColumn(item)}>
-						<option value={item} key={idx}>
-							{item}
-						</option>
-					</select>
-				))}
-			</div>
 			<input
 				className='mr-3'
 				type='text'
@@ -151,7 +171,11 @@ const MainPage = () => {
 				<thead>
 					<tr className='bg-slate-400'>
 						{headers.map((location: any, idx: number) => (
-							<th className='border-slate-600 border px-7' key={idx}>
+							<th
+								className='border-slate-600 border px-7'
+								key={idx}
+								onClick={() => sortColumn(location)}
+							>
 								{location}
 							</th>
 						))}
