@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const HEADERS = [
-	'city',
-	'state',
-	'country',
-	'postcode',
-	'street name',
-	'number',
-	'latitude',
-	'longitude',
-];
+// const HEADERS = [
+// 	'Sort By:',
+// 	'city',
+// 	'state',
+// 	'country',
+// 	'postcode',
+// 	'street name',
+// 	'number',
+// 	'latitude',
+// 	'longitude',
+// ];
 
 const MainPage = () => {
 	type Location = any;
@@ -25,7 +26,6 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
-	// console.log('----headers-----', headers);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -84,7 +84,7 @@ const MainPage = () => {
 		});
 	};
 
-	const sortingOptions = HEADERS.map((item: any) => (
+	const sortingOptions = headers.map((item: any) => (
 		<option value={item} key={item}>
 			{item}
 		</option>
@@ -95,19 +95,21 @@ const MainPage = () => {
 
 	//make a copy of the ne fetchedHeaders and new data.
 	//if  value of item[idx] = sortingHeaders[idx]
-	const sortHandler = (sortKey: any) => {
+
+	const sortData = () => {};
+
+	const sortColumn = (sortKey: any) => {
 		const flattenedLocationsCopy = {
-			...flattenedLocations,
+			headers: [...flattenedLocations.headers],
 			data: [...flattenedLocations.data],
 		};
-		const { data, headers } = flattenedLocationsCopy;
+		const { data } = flattenedLocationsCopy;
 
-		const test = data.map((item: any, idx: any) => item[sortKey]);
+		const test = data.map((item: any) => item[sortKey]);
 		const sortTest = test.sort();
-		console.log('----sortTest----', sortTest);
+		console.log('----sortTest----', test);
+		console.log('!!!!####', headers);
 	};
-
-	console.log('----sortHandler----', sortHandler('number'));
 
 	useEffect(() => {
 		fetchPeople();
@@ -120,10 +122,12 @@ const MainPage = () => {
 	return (
 		<>
 			<div className='border'>
-				<label className='mr-2' htmlFor='locaions'>
+				<label className='mr-2' htmlFor='locations'>
 					Sort by:
 				</label>
-				<select id='location'>{sortingOptions}</select>
+				<select id='location' onClick={() => console.log('hello')}>
+					{sortingOptions}
+				</select>
 			</div>
 			<input
 				className='mr-3'
