@@ -14,8 +14,6 @@ const MainPage = () => {
 
 	// make it clickable to select a row - takes you to user specific data.
 
-	// add a modal - saying..click on header to sort..click on a row to take you to specific user
-
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
 	const [modalOpen, setmodalOpen] = useState<any>(false);
@@ -151,7 +149,7 @@ const MainPage = () => {
 
 		const modalTimer = setTimeout(() => {
 			setmodalOpen(true);
-		}, 1500);
+		}, 2000);
 
 		setmodalOpen(false);
 
@@ -198,7 +196,7 @@ const MainPage = () => {
 				<tbody>
 					{getfilteredRows(data, inputFieldValue).map(
 						(item: any, idx: number) => (
-							<tr key={idx}>
+							<tr key={idx} onClick={() => console.log('hello')}>
 								{headers.map((header: any, idx: any) => (
 									<td className='border border-slate-600' key={idx}>
 										{item[header]}

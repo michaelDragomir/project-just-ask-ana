@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className='bg-slate-300 border-2 border-sky-500'>
+			<body className='bg-slate-300'>
 				<Header />
 				{children}
 			</body>
