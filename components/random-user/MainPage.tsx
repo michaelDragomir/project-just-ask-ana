@@ -18,6 +18,7 @@ const MainPage = () => {
 
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
+	const [modalOpen, setmodalOpen] = useState<any>(false);
 	const [sortingDirection, setSortingDirection] = useState<any>({});
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
@@ -147,6 +148,16 @@ const MainPage = () => {
 
 	useEffect(() => {
 		fetchPeople();
+
+		const modalTimer = setTimeout(() => {
+			setmodalOpen(true);
+		}, 1500);
+
+		setmodalOpen(false);
+
+		return () => {
+			clearTimeout(modalTimer);
+		};
 	}, []);
 
 	const refetchDataHandler = () => {
@@ -155,7 +166,7 @@ const MainPage = () => {
 
 	return (
 		<>
-			<Modal />
+			{modalOpen && <Modal />}
 			<input
 				className='mr-3'
 				type='text'
