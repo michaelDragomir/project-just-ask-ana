@@ -18,6 +18,7 @@ const MainPage = () => {
 	type Location = any;
 
 	// make it clickable to select a row - takes you to user specific data.
+
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
@@ -84,31 +85,30 @@ const MainPage = () => {
 		});
 	};
 
-	const sortingOptions = headers.map((item: any) => (
-		<option value={item} key={item}>
-			{item}
-		</option>
-	));
+	const sortData = (data: any, sortKey: any) => {
+		data.sort((a: any, b: any) => {
+			const sortA = a[sortKey];
+			const sortB = b[sortKey];
 
-	//getting corect data sort.
-	// it overrides original array..so need to make a copy of it...
-
-	//make a copy of the ne fetchedHeaders and new data.
-	//if  value of item[idx] = sortingHeaders[idx]
-
-	const sortData = () => {};
+			if (sortA < sortB) {
+				return -1;
+			}
+			if (sortA > sortB) {
+				return 1;
+			}
+			return 0;
+		});
+	};
 
 	const sortColumn = (sortKey: any) => {
 		const flattenedLocationsCopy = {
-			headers: [...flattenedLocations.headers],
+			...flattenedLocations,
 			data: [...flattenedLocations.data],
 		};
 		const { data } = flattenedLocationsCopy;
 
-		const test = data.map((item: any) => item[sortKey]);
-		const sortTest = test.sort();
-		console.log('----sortTest----', test);
-		console.log('!!!!####', headers);
+		sortData(data, sortKey);
+		setFlattenedLocations(flattenedLocationsCopy);
 	};
 
 	useEffect(() => {
@@ -125,9 +125,13 @@ const MainPage = () => {
 				<label className='mr-2' htmlFor='locations'>
 					Sort by:
 				</label>
-				<select id='location' onClick={() => console.log('hello')}>
-					{sortingOptions}
-				</select>
+				{headers.map((item: any, idx: number) => (
+					<select key={idx} id='location' onClick={() => sortColumn(item)}>
+						<option value={item} key={idx}>
+							{item}
+						</option>
+					</select>
+				))}
 			</div>
 			<input
 				className='mr-3'
