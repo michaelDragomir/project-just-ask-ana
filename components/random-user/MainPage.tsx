@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Modal from '@/components/random-user/Modal';
+import Link from 'next/link';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -23,6 +24,7 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
+	console.log('---DATA----', users);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -184,7 +186,7 @@ const MainPage = () => {
 					<tr className='bg-slate-400'>
 						{headers.map((location: any, idx: number) => (
 							<th
-								className='border-slate-600 border px-7'
+								className='border-slate-600 border px-7 cursor-default'
 								key={idx}
 								onClick={() => sortColumn(location)}
 							>
@@ -196,10 +198,12 @@ const MainPage = () => {
 				<tbody>
 					{getfilteredRows(data, inputFieldValue).map(
 						(item: any, idx: number) => (
-							<tr key={idx} onClick={() => console.log('hello')}>
+							<tr key={idx}>
 								{headers.map((header: any, idx: any) => (
 									<td className='border border-slate-600' key={idx}>
-										{item[header]}
+										<Link href={`/random-user/${item.city}`}>
+											{item[header]}
+										</Link>
 									</td>
 								))}
 							</tr>

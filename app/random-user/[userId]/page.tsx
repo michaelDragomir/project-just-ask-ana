@@ -1,7 +1,7 @@
-const UserPage = () => {
+const UserPage = ({ params }: { params: any }) => {
 	return (
 		<>
-			<div className='text-center'>Hello user Page</div>
+			<div className='text-center'>{params.city}</div>
 		</>
 	);
 };
