@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Modal from '@/components/random-user/Modal';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -12,6 +13,7 @@ const MainPage = () => {
 	type Location = any;
 
 	// make it clickable to select a row - takes you to user specific data.
+
 	// add a modal - saying..click on header to sort..click on a row to take you to specific user
 
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
@@ -153,6 +155,7 @@ const MainPage = () => {
 
 	return (
 		<>
+			<Modal />
 			<input
 				className='mr-3'
 				type='text'
