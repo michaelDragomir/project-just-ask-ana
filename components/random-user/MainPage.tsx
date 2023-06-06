@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Modal from '@/components/random-user/Modal';
+import Modal from './Modal';
 import Link from 'next/link';
 
 enum SortingDirection {
@@ -24,7 +24,7 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
-	console.log('---DATA----', users);
+	console.log('---DATA----', data);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -197,17 +197,20 @@ const MainPage = () => {
 				</thead>
 				<tbody>
 					{getfilteredRows(data, inputFieldValue).map(
-						(item: any, idx: number) => (
-							<tr key={idx}>
-								{headers.map((header: any, idx: any) => (
-									<td className='border border-slate-600' key={idx}>
-										<Link href={`/random-user/${item.city}`}>
-											{item[header]}
-										</Link>
-									</td>
-								))}
-							</tr>
-						),
+						(item: any, idx: number) => {
+							console.log('---item---', item);
+							return (
+								<tr key={idx}>
+									{headers.map((header: any, idx: any) => (
+										<td className='border border-slate-600' key={idx}>
+											<Link href={`/random-user/country=${item.country}`}>
+												{item[header]}
+											</Link>
+										</td>
+									))}
+								</tr>
+							);
+						},
 					)}
 				</tbody>
 			</table>
