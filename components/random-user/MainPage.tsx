@@ -153,12 +153,6 @@ const MainPage = () => {
 
 			hasMounted.current = true;
 		}
-
-		setmodalOpen(false);
-
-		// return () => {
-		// 	clearTimeout(modalTimer);
-		// };
 	}, []);
 
 	const refetchDataHandler = () => {
