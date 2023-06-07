@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Modal from './Modal';
 
 enum SortingDirection {
@@ -15,6 +15,7 @@ const MainPage = () => {
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
 	const [modalOpen, setmodalOpen] = useState<any>(false);
+	const hasMounted = useRef(false);
 	const [sortingDirection, setSortingDirection] = useState<any>({});
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
@@ -145,15 +146,19 @@ const MainPage = () => {
 	useEffect(() => {
 		fetchPeople();
 
-		const modalTimer = setTimeout(() => {
-			setmodalOpen(true);
-		}, 2000);
+		if (!hasMounted.current) {
+			setTimeout(() => {
+				setmodalOpen(true);
+			}, 2000);
+
+			hasMounted.current = true;
+		}
 
 		setmodalOpen(false);
 
-		return () => {
-			clearTimeout(modalTimer);
-		};
+		// return () => {
+		// 	clearTimeout(modalTimer);
+		// };
 	}, []);
 
 	const refetchDataHandler = () => {

@@ -1,10 +1,11 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 const UserModal = () => {
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = useState(true);
+
 	const handleClose = () => setOpen(false);
 
 	return (
