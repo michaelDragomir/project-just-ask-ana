@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Modal from './Modal';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -12,6 +12,7 @@ enum SortingDirection {
 
 const MainPage = () => {
 	type Location = any;
+	const router = useRouter();
 
 	// make it clickable to select a row - takes you to user specific data.
 
@@ -78,7 +79,7 @@ const MainPage = () => {
 	const getfilteredRows = (rows: any[], searchInputValue: string) => {
 		return rows.filter((row: any) => {
 			return Object.values(row).some((text: any) =>
-				('' + text).toLowerCase().includes(searchInputValue),
+				('' + text).toLowerCase().includes(searchInputValue.toLowerCase()),
 			);
 		});
 	};
@@ -198,14 +199,11 @@ const MainPage = () => {
 				<tbody>
 					{getfilteredRows(data, inputFieldValue).map(
 						(item: any, idx: number) => {
-							console.log('---item---', item);
 							return (
 								<tr key={idx}>
 									{headers.map((header: any, idx: any) => (
 										<td className='border border-slate-600' key={idx}>
-											<Link href={`/random-user/country=${item.country}`}>
-												{item[header]}
-											</Link>
+											<button>{item[header]}</button>
 										</td>
 									))}
 								</tr>

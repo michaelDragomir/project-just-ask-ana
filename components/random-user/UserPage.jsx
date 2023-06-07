@@ -1,49 +1,47 @@
 'use client';
 
-async function getData(country) {
-	const response = await fetch(`https://randomuser.me/api/?country=${country}`);
-	if (!response.ok) {
-		throw new Error('Failed to fetch data');
-	}
+// async function getData() {
+// 	const response = await fetch(`https://randomuser.me/api/?results=15`, {
+// 		cache: 'no-store',
+// 	});
+// 	if (!response.ok) {
+// 		throw new Error('Failed to fetch data');
+// 	}
 
-	const data = await response.json();
-	console.log('**data**', data);
+// 	const data = await response.json();
 
-	return data;
-}
+// 	return data;
+// }
 
-const UserPage = async ({ country }) => {
-	const data = await getData(country);
-	const { results } = data;
+const UserPage = async ({ users }) => {
+	// const data = await getData();
+	// const { results } = data;
 
-	console.log('----results----', results[0].location.country);
+	// const allCountries = [];
 
-	const test = results.map((item) => item.location.country);
-	console.log('--test--', test);
+	// for (const key in results) {
+	// 	allCountries.push({
+	// 		country: results[key].location.country,
+	// 	});
+	// }
+
+	// const useBycountry = allCountries.find(
+	// 	(location) => location.country !== country,
+	// );
+
+	console.log('users', users);
+	// console.log('useBycountry', useBycountry);
 
 	return (
 		<>
-			<h2>{results[0].location.country}</h2>
-			<h2>{results[0].location.city}</h2>
-			<h2>{results[0].location.state}</h2>
-			<h2>{results[0].location.postcode}</h2>
-			<h2>{results[0].location.street.name}</h2>
-
-			{/* <p>{repo.description}</p> */}
-			{/* <div className='card-stats'>
-				<div className='card-stat'>
-					<FaStar />
-					<span>{repo.stargazers_count}</span>
-				</div>
-				<div className='card-stat'>
-					<FaCodeBranch />
-					<span>{repo.forks_count}</span>
-				</div>
-				<div className='card-stat'>
-					<FaEye />
-					<span>{repo.watchers_count}</span>
-				</div>
-			</div> */}
+			<h1>hello</h1>
+			{/* {results.map((item, idx) => {
+				return (
+					<div key={idx}>
+						<h1>{item.location.country}</h1>
+					</div>
+				);
+			})} */}
 		</>
 	);
 };
