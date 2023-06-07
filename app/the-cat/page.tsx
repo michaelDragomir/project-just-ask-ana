@@ -1,5 +1,13 @@
-const theCatHomePage = () => {
-	return <div>The Cat HP</div>;
+import MainPage from '@/components/catAPI/MainPage';
+
+const RandomUserHomePage = () => {
+	return (
+		<>
+			<div className='text-center'>
+				<MainPage />
+			</div>
+		</>
+	);
 };
 
-export default theCatHomePage;
+export default RandomUserHomePage;
