@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-export default function BasicModal() {
+const UserModal = () => {
 	const [open, setOpen] = React.useState(true);
 	const handleClose = () => setOpen(false);
 
@@ -27,4 +27,6 @@ export default function BasicModal() {
 			</Modal>
 		</div>
 	);
-}
+};
+
+export default UserModal;

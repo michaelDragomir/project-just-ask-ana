@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Modal from '@/components/random-user/Modal';
-import Link from 'next/link';
+import Modal from './Modal';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -13,8 +12,6 @@ enum SortingDirection {
 const MainPage = () => {
 	type Location = any;
 
-	// make it clickable to select a row - takes you to user specific data.
-
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
 	const [modalOpen, setmodalOpen] = useState<any>(false);
@@ -24,7 +21,6 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
-	console.log('---DATA----', users);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -78,7 +74,7 @@ const MainPage = () => {
 	const getfilteredRows = (rows: any[], searchInputValue: string) => {
 		return rows.filter((row: any) => {
 			return Object.values(row).some((text: any) =>
-				('' + text).toLowerCase().includes(searchInputValue),
+				('' + text).toLowerCase().includes(searchInputValue.toLowerCase()),
 			);
 		});
 	};
@@ -197,17 +193,17 @@ const MainPage = () => {
 				</thead>
 				<tbody>
 					{getfilteredRows(data, inputFieldValue).map(
-						(item: any, idx: number) => (
-							<tr key={idx}>
-								{headers.map((header: any, idx: any) => (
-									<td className='border border-slate-600' key={idx}>
-										<Link href={`/random-user/${item.city}`}>
-											{item[header]}
-										</Link>
-									</td>
-								))}
-							</tr>
-						),
+						(item: any, idx: number) => {
+							return (
+								<tr key={idx}>
+									{headers.map((header: any, idx: any) => (
+										<td className='border border-slate-600' key={idx}>
+											<button>{item[header]}</button>
+										</td>
+									))}
+								</tr>
+							);
+						},
 					)}
 				</tbody>
 			</table>
