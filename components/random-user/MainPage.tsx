@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Modal from './Modal';
-import { useRouter } from 'next/navigation';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -12,9 +11,6 @@ enum SortingDirection {
 
 const MainPage = () => {
 	type Location = any;
-	const router = useRouter();
-
-	// make it clickable to select a row - takes you to user specific data.
 
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
@@ -25,7 +21,6 @@ const MainPage = () => {
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
-	console.log('---DATA----', data);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
