@@ -25,7 +25,7 @@ const RandomUserHomePage = async () => {
 	return (
 		<>
 			<div className='text-center'>
-				<MainPage />
+				<MainPage data={catData} />
 			</div>
 		</>
 	);
