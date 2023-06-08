@@ -176,6 +176,10 @@ const MainPage = () => {
 			>
 				Refetch Data
 			</button>
+			<h4 className='mb-3'>
+				This API fetches data, sorts by headers, and searches for specific a
+				location.
+			</h4>
 			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
 					<tr className='bg-slate-400'>
@@ -185,7 +189,7 @@ const MainPage = () => {
 								key={idx}
 								onClick={() => sortColumn(location)}
 							>
-								{location}
+								<button type='button'>{location}</button>
 							</th>
 						))}
 					</tr>
@@ -197,7 +201,7 @@ const MainPage = () => {
 								<tr key={idx}>
 									{headers.map((header: any, idx: any) => (
 										<td className='border border-slate-600' key={idx}>
-											<button>{item[header]}</button>
+											{item[header]}
 										</td>
 									))}
 								</tr>
