@@ -38,9 +38,11 @@ const MainPage = () => {
 		<>
 			<div className='mx-auto w-3/4 max-h-full pt-4 text-xl text-center border-orange-400 border-2'>
 				<label>Breeds:</label>
-				<select value='cat'>
+				<select value='cat' key='cat'>
 					{breeds.map((item: any) => (
-						<option value={item}>{item.name}</option>
+						<option key={item.name} value={item}>
+							{item.name}
+						</option>
 					))}
 				</select>
 			</div>
