@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Test from './Test';
 
 const MainPage = () => {
 	const [breeds, setBreeds] = useState<any>([]);
@@ -43,6 +44,7 @@ const MainPage = () => {
 					))}
 				</select>
 			</div>
+			<Test />
 		</>
 	);
 };
