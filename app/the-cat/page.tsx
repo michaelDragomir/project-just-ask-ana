@@ -1,6 +1,6 @@
 import MainPage from '@/components/catAPI/MainPage';
 
-const RandomUserHomePage = () => {
+const CatHomePage = () => {
 	return (
 		<>
 			<div className='text-center'>
@@ -10,4 +10,4 @@ const RandomUserHomePage = () => {
 	);
 };
 
-export default RandomUserHomePage;
+export default CatHomePage;
