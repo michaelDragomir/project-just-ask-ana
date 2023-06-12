@@ -36,7 +36,7 @@ const MainPage = () => {
 
 	return (
 		<>
-			<div className='mx-auto w-3/4 max-h-full pt-4 text-xl text-center border-orange-400 border-2'>
+			<div className='mx-auto w-3/4 max-h-full pb-4 text-xl text-center '>
 				<label>Breeds:</label>
 				<select value='cat' key='cat'>
 					{breeds.map((item: any) => (
