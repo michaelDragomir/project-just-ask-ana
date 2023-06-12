@@ -1,15 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Test from './Test';
+import ImageCarousel from './ImageCarousel';
 
 const MainPage = () => {
 	const [breeds, setBreeds] = useState<any>([]);
 	const [breedImages, setBreedImages] = useState<any>([]);
-	const [selectedbreed, setselectedbreed] = useState<any>(0);
-
-	console.log('--breeds---', breeds);
+	const [selectedBreed, setSelectedBreed] = useState<any>(0);
 
 	useEffect(() => {
 		const getAllBreeds = async () => {
@@ -34,19 +31,49 @@ const MainPage = () => {
 		getAllBreeds();
 	}, []);
 
+	const getSpecificBreeds = async (selectedbreed: any, limit: number) => {
+		const response = await fetch(
+			`https://api.thecatapi.com/v1/images/search?breed_ids=${selectedbreed}&limit=${limit}`,
+			{
+				headers: {
+					'x-api-key':
+						'live_d7Zz8FWOCt9MQqOtmoBNTMS1R31Q2Yn6RAVcjf2z2guhPU2pQ14Z0jcfum5Evw7I',
+				},
+				cache: 'no-store',
+			},
+		);
+
+		if (!response.ok) {
+			throw new Error('Failed to fetch data');
+		}
+
+		const data = await response.json();
+
+		setBreedImages(data);
+
+		return data;
+	};
+
+	const specificBreedImages = (e: any) => {
+		const selectedBreed = e.target.value;
+		getSpecificBreeds(selectedBreed, 3);
+
+		setSelectedBreed(selectedBreed);
+	};
+
 	return (
 		<>
-			<div className='mx-auto w-3/4 max-h-full pt-4 text-xl text-center border-orange-400 border-2'>
+			<div className='mx-auto w-3/4 max-h-full pb-4 text-xl text-center '>
 				<label>Breeds:</label>
-				<select value='cat' key='cat'>
+				<select value={selectedBreed} onChange={specificBreedImages}>
 					{breeds.map((item: any) => (
-						<option key={item.name} value={item}>
+						<option key={item.id} value={item.id}>
 							{item.name}
 						</option>
 					))}
 				</select>
 			</div>
-			<Test />
+			<ImageCarousel images={breedImages} />
 		</>
 	);
 };
