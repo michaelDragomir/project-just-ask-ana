@@ -4,23 +4,18 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const ImageCarousel = ({ data }: any) => {
-	const [favorites, setFavorites] = useState([]);
+	const [favorites, setFavorites] = useState<any>([]);
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
 	const description = descriptionMap[0];
 
 	const originMap = data.map((item: any) => item.breeds[0].origin);
 	const origin = originMap[0];
 
-	const addToFavoritesHandler = (imageId: any) => {
+	const addToFavoritesHandler = (favedImage: any) => {
 		const updatedFavs = [...favorites];
+		setFavorites([favedImage, ...updatedFavs]);
 
-		updatedFavs.forEach((image: any) => {
-			if (image.id === imageId.id) {
-				return setFavorites([imageId.id, ...favorites]);
-			}
-		});
-
-		console.log('!!!', updatedFavs, imageId);
+		console.log('!!!', updatedFavs, favedImage.url);
 	};
 
 	console.log('FAVS', favorites);
@@ -36,6 +31,13 @@ const ImageCarousel = ({ data }: any) => {
 					<span className='pr-3'>DESCRIPTION:</span>
 					{description}
 				</p>
+				<Image
+					key={favorites.id}
+					alt={favorites.id}
+					src={favorites.url}
+					width={100}
+					height={100}
+				/>
 			</div>
 			<Carousel
 				showArrows={true}
@@ -48,7 +50,7 @@ const ImageCarousel = ({ data }: any) => {
 					<>
 						<button
 							type='button'
-							onClick={() => addToFavoritesHandler(image.id)}
+							onClick={() => addToFavoritesHandler(image)}
 							className='border-2 border-white rounded-lg p-1 bg-white m-2'
 						>
 							Me Likey
