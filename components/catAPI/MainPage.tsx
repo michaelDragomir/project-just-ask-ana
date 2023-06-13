@@ -2,12 +2,11 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import ImageCarousel from './ImageCarousel';
-import Desscripton from './Description';
 
 const MainPage = () => {
 	const [breeds, setBreeds] = useState<any>([]);
 	const [breedImages, setBreedImages] = useState<any>([]);
-	const [selectedBreed, setSelectedBreed] = useState<any>(0);
+	const [selectedBreed, setSelectedBreed] = useState<any>('');
 
 	useEffect(() => {
 		const getAllBreeds = async () => {
@@ -30,6 +29,7 @@ const MainPage = () => {
 		};
 
 		getAllBreeds();
+		getSpecificBreeds('abys', 3);
 	}, []);
 
 	const getSpecificBreeds = async (selectedbreed: any, limit: number) => {
@@ -61,8 +61,6 @@ const MainPage = () => {
 
 		setSelectedBreed(selectedBreed);
 	};
-
-	console.log('BREED DATA - ', breedImages);
 
 	return (
 		<>
