@@ -1,13 +1,24 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { useState } from 'react';
 import Image from 'next/image';
 
 const ImageCarousel = ({ data }: any) => {
+	const [favorites, setFavorites] = useState<any>([]);
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
 	const description = descriptionMap[0];
 
 	const originMap = data.map((item: any) => item.breeds[0].origin);
 	const origin = originMap[0];
+
+	const addToFavoritesHandler = (favedImage: any) => {
+		const updatedFavs = [...favorites];
+		setFavorites([favedImage, ...updatedFavs]);
+
+		console.log('!!!', updatedFavs, favedImage.url);
+	};
+
+	console.log('FAVS', favorites);
 
 	return (
 		<div className='w-1/3 mx-auto'>
@@ -20,6 +31,13 @@ const ImageCarousel = ({ data }: any) => {
 					<span className='pr-3'>DESCRIPTION:</span>
 					{description}
 				</p>
+				<Image
+					key={favorites.id}
+					alt={favorites.id}
+					src={favorites.url}
+					width={100}
+					height={100}
+				/>
 			</div>
 			<Carousel
 				showArrows={true}
@@ -30,6 +48,13 @@ const ImageCarousel = ({ data }: any) => {
 			>
 				{data.map((image: any) => (
 					<>
+						<button
+							type='button'
+							onClick={() => addToFavoritesHandler(image)}
+							className='border-2 border-white rounded-lg p-1 bg-white m-2'
+						>
+							Me Likey
+						</button>
 						<Image
 							key={image.id}
 							alt={image.id}
