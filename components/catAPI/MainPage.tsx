@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import ImageCarousel from './ImageCarousel';
 
 const MainPage = () => {
 	const [breeds, setBreeds] = useState<any>([]);
 	const [breedImages, setBreedImages] = useState<any>([]);
-	const [selectedBreed, setSelectedBreed] = useState<any>(0);
+	const [selectedBreed, setSelectedBreed] = useState<any>('');
 
 	useEffect(() => {
 		const getAllBreeds = async () => {
@@ -29,6 +29,7 @@ const MainPage = () => {
 		};
 
 		getAllBreeds();
+		getSpecificBreeds('abys', 3);
 	}, []);
 
 	const getSpecificBreeds = async (selectedbreed: any, limit: number) => {
@@ -63,7 +64,7 @@ const MainPage = () => {
 
 	return (
 		<>
-			<div className='mx-auto w-3/4 max-h-full pb-4 text-xl text-center '>
+			<div className='mx-auto w-3/4 max-h-full pb-4 text-xl text-center'>
 				<label>Breeds:</label>
 				<select value={selectedBreed} onChange={specificBreedImages}>
 					{breeds.map((item: any) => (
@@ -73,7 +74,9 @@ const MainPage = () => {
 					))}
 				</select>
 			</div>
-			<ImageCarousel images={breedImages} />
+			<Suspense fallback={<p>Loading Breeds...</p>}>
+				<ImageCarousel data={breedImages} />
+			</Suspense>
 		</>
 	);
 };
