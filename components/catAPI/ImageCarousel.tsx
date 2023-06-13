@@ -12,13 +12,21 @@ const ImageCarousel = ({ data }: any) => {
 	const origin = originMap[0];
 
 	const addToFavoritesHandler = (favedImage: any) => {
+		console.log('favedImage', favedImage.id);
 		const updatedFavs = [...favorites];
-		setFavorites([favedImage, ...updatedFavs]);
 
-		console.log('!!!', updatedFavs, favedImage.url);
+		// updatedFavs.forEach((image: any) => {
+		// 	if (image.id === favedImage.id) {
+		// 		console.log('image - inside foreach', image.id);
+		// 		return;
+		// 	}
+		// });
+
+		setFavorites([favedImage, ...updatedFavs]);
+		console.log('---updatedFavs---', updatedFavs);
 	};
 
-	console.log('FAVS', favorites);
+	console.log('----FAVS STATE---', favorites);
 
 	return (
 		<div className='w-1/3 mx-auto'>
@@ -31,13 +39,19 @@ const ImageCarousel = ({ data }: any) => {
 					<span className='pr-3'>DESCRIPTION:</span>
 					{description}
 				</p>
-				<Image
-					key={favorites.id}
-					alt={favorites.id}
-					src={favorites.url}
-					width={100}
-					height={100}
-				/>
+			</div>
+			<span className='pr-3'>FAVORITES: {favorites.length}</span>
+			<div className='flex flex-wrap h-fit border-4 border-white rounded-lg mb-4'>
+				{favorites.map((image: any) => (
+					<Image
+						key={image.id}
+						src={image.url}
+						alt={image.id}
+						width={100}
+						height={100}
+						className='border-2 border-white rounded-lg m-1'
+					/>
+				))}
 			</div>
 			<Carousel
 				showArrows={true}
