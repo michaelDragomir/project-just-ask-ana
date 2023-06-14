@@ -38,6 +38,8 @@ const ImageCarousel = ({ data }: any) => {
 		setFavorites([...deletedImages]);
 	};
 
+	console.log('!!', favorites);
+
 	return (
 		<div className='w-1/3 mx-auto'>
 			<div className='w-fill pb-5 text-xl'>
@@ -63,7 +65,7 @@ const ImageCarousel = ({ data }: any) => {
 						<Image
 							key={image.id}
 							src={image.url}
-							alt={image.id}
+							alt={image.url}
 							width={96}
 							height={72}
 							className='border-2 border-white rounded-lg m-1'
