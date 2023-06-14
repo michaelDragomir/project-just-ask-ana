@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const ImageCarousel = ({ data, breed_ids }: any) => {
+const ImageCarousel = ({ data }: any) => {
 	const [favorites, setFavorites] = useState<any>([]);
 
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
@@ -38,8 +38,6 @@ const ImageCarousel = ({ data, breed_ids }: any) => {
 
 		setFavorites([...deletedImages]);
 	};
-
-	console.log('!!', data);
 
 	return (
 		<div className='w-1/3 mx-auto'>
