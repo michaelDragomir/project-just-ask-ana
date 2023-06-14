@@ -18,6 +18,7 @@ const ImageCarousel = ({ data }: any) => {
 		const updatedFavs = [...favorites];
 
 		if (updatedFavs.includes(favedImage)) {
+			alert('Already liked.');
 			return;
 		}
 
@@ -27,6 +28,14 @@ const ImageCarousel = ({ data }: any) => {
 		}
 
 		setFavorites([favedImage, ...favorites]);
+	};
+
+	const removeFavoriteHandler = (favedImage: any) => {
+		const deletedImages = favorites.filter(
+			(image: any) => image.id !== favedImage.id,
+		);
+
+		setFavorites([...deletedImages]);
 	};
 
 	return (
@@ -41,17 +50,21 @@ const ImageCarousel = ({ data }: any) => {
 					{description}
 				</p>
 			</div>
-			<span className='pr-3'>FAVORITES: {favorites.length}</span>
+			<span className='pr-3 font-semibold'>
+				FAVORITES: {favorites.length} (Click on image to remove)
+			</span>
 			<div className='flex flex-wrap h-fit border-4 border-white rounded-lg mb-4'>
 				{favorites.map((image: any) => (
-					<Image
-						key={image.id}
-						src={image.url}
-						alt={image.id}
-						width={100}
-						height={100}
-						className='border-2 border-white rounded-lg m-1'
-					/>
+					<button type='button' onClick={() => removeFavoriteHandler(image)}>
+						<Image
+							key={image.id}
+							src={image.url}
+							alt={image.id}
+							width={96}
+							height={72}
+							className='border-2 border-white rounded-lg m-1'
+						/>
+					</button>
 				))}
 			</div>
 			<Carousel
