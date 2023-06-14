@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 const ImageCarousel = ({ data }: any) => {
 	const [favorites, setFavorites] = useState<any>([]);
+
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
 	const description = descriptionMap[0];
 
@@ -17,6 +18,11 @@ const ImageCarousel = ({ data }: any) => {
 		const updatedFavs = [...favorites];
 
 		if (updatedFavs.includes(favedImage)) {
+			return;
+		}
+
+		if (updatedFavs.length >= 12) {
+			alert('12 favorites MAX.');
 			return;
 		}
 
