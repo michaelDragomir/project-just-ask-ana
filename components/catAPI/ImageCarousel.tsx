@@ -4,6 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ImageCarousel = ({ data }: any) => {
 	const [favorites, setFavorites] = useState<any>([]);
@@ -37,8 +38,6 @@ const ImageCarousel = ({ data }: any) => {
 
 		setFavorites([...deletedImages]);
 	};
-
-	console.log('!!', favorites);
 
 	return (
 		<div className='w-1/3 mx-auto'>
@@ -86,14 +85,17 @@ const ImageCarousel = ({ data }: any) => {
 						>
 							Add to Favorites
 						</button>
-						<Image
-							key={image.id}
-							alt={image.id}
-							src={image.url}
-							width={450}
-							height={200}
-							onClick={() => console.log('works')}
-						/>
+						<Link href={`/the-cat/breed_ids=${image.breeds[0].id}`}>
+							<button>
+								<Image
+									key={image.id}
+									alt={image.id}
+									src={image.url}
+									width={450}
+									height={200}
+								/>
+							</button>
+						</Link>
 					</>
 				))}
 			</Carousel>
