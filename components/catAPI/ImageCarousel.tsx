@@ -55,7 +55,11 @@ const ImageCarousel = ({ data }: any) => {
 			</span>
 			<div className='flex flex-wrap h-fit border-4 border-white rounded-lg mb-4'>
 				{favorites.map((image: any) => (
-					<button type='button' onClick={() => removeFavoriteHandler(image)}>
+					<button
+						key={image.id}
+						type='button'
+						onClick={() => removeFavoriteHandler(image)}
+					>
 						<Image
 							key={image.id}
 							src={image.url}
@@ -77,6 +81,7 @@ const ImageCarousel = ({ data }: any) => {
 				{data.map((image: any) => (
 					<>
 						<button
+							key={image.url}
 							type='button'
 							onClick={() => addToFavoritesHandler(image)}
 							className='border-2 border-white rounded-lg p-1 bg-white m-2'
