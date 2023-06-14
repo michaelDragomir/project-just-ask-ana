@@ -12,21 +12,18 @@ const ImageCarousel = ({ data }: any) => {
 	const origin = originMap[0];
 
 	const addToFavoritesHandler = (favedImage: any) => {
-		console.log('favedImage', favedImage.id);
 		const updatedFavs = [...favorites];
 
-		// updatedFavs.forEach((image: any) => {
-		// 	if (image.id === favedImage.id) {
-		// 		console.log('image - inside foreach', image.id);
-		// 		return;
-		// 	}
-		// });
+		updatedFavs.forEach((image: any) => {
+			if (image.id === favedImage.id) {
+				return null;
+			}
+		});
 
-		setFavorites([favedImage, ...updatedFavs]);
-		console.log('---updatedFavs---', updatedFavs);
+		setFavorites([favedImage, ...favorites]);
 	};
 
-	console.log('----FAVS STATE---', favorites);
+	console.log('----FAVS STATE---', favorites.length);
 
 	return (
 		<div className='w-1/3 mx-auto'>
