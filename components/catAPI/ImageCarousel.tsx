@@ -1,3 +1,5 @@
+'use client';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { useState } from 'react';
@@ -5,6 +7,7 @@ import Image from 'next/image';
 
 const ImageCarousel = ({ data }: any) => {
 	const [favorites, setFavorites] = useState<any>([]);
+
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
 	const description = descriptionMap[0];
 
@@ -12,21 +15,19 @@ const ImageCarousel = ({ data }: any) => {
 	const origin = originMap[0];
 
 	const addToFavoritesHandler = (favedImage: any) => {
-		console.log('favedImage', favedImage.id);
 		const updatedFavs = [...favorites];
 
-		// updatedFavs.forEach((image: any) => {
-		// 	if (image.id === favedImage.id) {
-		// 		console.log('image - inside foreach', image.id);
-		// 		return;
-		// 	}
-		// });
+		if (updatedFavs.includes(favedImage)) {
+			return;
+		}
 
-		setFavorites([favedImage, ...updatedFavs]);
-		console.log('---updatedFavs---', updatedFavs);
+		if (updatedFavs.length >= 12) {
+			alert('12 favorites MAX.');
+			return;
+		}
+
+		setFavorites([favedImage, ...favorites]);
 	};
-
-	console.log('----FAVS STATE---', favorites);
 
 	return (
 		<div className='w-1/3 mx-auto'>
