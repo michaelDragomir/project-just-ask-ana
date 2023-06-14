@@ -1,10 +1,6 @@
 import Image from 'next/image';
 
 const getSpecificBreeds = async (selectedbreed: any) => {
-	console.log(
-		'!!!',
-		`https://api.thecatapi.com/v1/images/search?${selectedbreed}`, // update this
-	);
 	const response = await fetch(
 		`https://api.thecatapi.com/v1/images/search?${selectedbreed}`,
 	);
@@ -21,15 +17,12 @@ const getSpecificBreeds = async (selectedbreed: any) => {
 const CatBreedPage = async ({ breed_ids }: { breed_ids: any }) => {
 	const urlDecode = decodeURIComponent(breed_ids.replace(/\+/g, ' '));
 
-	const test = await getSpecificBreeds(urlDecode);
-
-	console.log('CATBREEDPAGE DATA', test);
-	test.map((item: any) => console.log('ITEM', item));
+	const catData = await getSpecificBreeds(urlDecode);
 
 	return (
 		<>
 			<div>
-				{test.map((item: any) => (
+				{catData.map((item: any) => (
 					<Image src={item.url} width={100} height={100} alt={item.url} />
 				))}
 			</div>
