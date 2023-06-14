@@ -12,9 +12,6 @@ const ImageCarousel = ({ data }: any) => {
 	const descriptionMap = data.map((item: any) => item.breeds[0].description);
 	const description = descriptionMap[0];
 
-	const originMap = data.map((item: any) => item.breeds[0].origin);
-	const origin = originMap[0];
-
 	const addToFavoritesHandler = (favedImage: any) => {
 		const updatedFavs = [...favorites];
 
@@ -42,10 +39,6 @@ const ImageCarousel = ({ data }: any) => {
 	return (
 		<div className='w-1/3 mx-auto'>
 			<div className='w-fill pb-5 text-xl'>
-				<p className='pb-3'>
-					<span className='pr-3'>ORIGIN:</span>
-					{origin}
-				</p>
 				<p>
 					<span className='pr-3'>DESCRIPTION:</span>
 					{description}
@@ -75,29 +68,29 @@ const ImageCarousel = ({ data }: any) => {
 				showStatus={false}
 				className='border-4 border-white rounded-lg'
 			>
-				{data.map((image: any) => (
+				{data.map((cat: any) => (
 					<>
 						<button
-							key={image.url}
+							key={cat.url}
 							type='button'
-							onClick={() => addToFavoritesHandler(image)}
+							onClick={() => addToFavoritesHandler(cat)}
 							className='border-2 border-white rounded-lg p-1 bg-white m-2'
 						>
 							Add to Favorites
 						</button>
 						<Link
 							href={{
-								pathname: `/the-cat/breed_ids=${image.breeds[0].id}`,
+								pathname: `/the-cat/breed_ids=${cat.breeds[0].id}`,
 								query: {
-									...image.breeds[0],
+									...cat.breeds[0],
 								},
 							}}
 						>
 							<button>
 								<Image
-									key={image.id}
-									alt={image.id}
-									src={image.url}
+									key={cat.id}
+									alt={cat.id}
+									src={cat.url}
 									width={450}
 									height={200}
 								/>

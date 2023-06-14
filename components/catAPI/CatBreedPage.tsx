@@ -24,10 +24,7 @@ const CatBreedPage = async ({ context }: any) => {
 	const { searchParams } = context;
 	const SearchParamsArr = [searchParams];
 
-	// const test = Object.values(searchParams);
 	console.log('!!!!SearchParamsArr', SearchParamsArr);
-	console.log('!!!!catData', catData);
-	// console.log('!!!!TEST', test);
 
 	return (
 		<>
@@ -35,15 +32,20 @@ const CatBreedPage = async ({ context }: any) => {
 				{catData.map((catItem: any, idx: any) => {
 					return (
 						<>
-							<Image
-								src={catItem.url}
-								width={100}
-								height={100}
-								alt={catItem.url}
-							/>
-							<div key={idx}>
+							<div className='mx-auto w-3/4 text-center' key={idx}>
+								<Image
+									src={catItem.url}
+									width={100}
+									height={100}
+									alt={catItem.url}
+									className='mx-auto'
+								/>
 								{SearchParamsArr.map((item: any) => (
-									<div key={idx}>{item.name}</div>
+									<>
+										<h1 key={idx}>{item.name}</h1>
+										<h1 key={idx}>{item.origin}</h1>
+										<h1 key={idx}>{item.temperament}</h1>
+									</>
 								))}
 							</div>
 						</>
