@@ -85,7 +85,14 @@ const ImageCarousel = ({ data }: any) => {
 						>
 							Add to Favorites
 						</button>
-						<Link href={`/the-cat/breed_ids=${image.breeds[0].id}`}>
+						<Link
+							href={{
+								pathname: `/the-cat/breed_ids=${image.breeds[0].id}`,
+								query: {
+									...image.breeds[0],
+								},
+							}}
+						>
 							<button>
 								<Image
 									key={image.id}

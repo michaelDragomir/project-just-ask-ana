@@ -1,10 +1,11 @@
 import CatBreedPage from '@/components/catAPI/CatBreedPage';
 
-const CatPage = ({ params: { breed_ids } }: { params: any }) => {
+const CatPage = (context: { context: any }) => {
+	console.log('context', context);
 	return (
 		<>
 			<div className='text-center'>
-				<CatBreedPage breed_ids={breed_ids} />
+				<CatBreedPage context={context} />
 			</div>
 		</>
 	);
