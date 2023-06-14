@@ -53,24 +53,20 @@ const ImageCarousel = ({ data }: any) => {
 				</p>
 			</div>
 			<span className='pr-3 font-semibold'>
-				FAVORITES: {favorites.length} (Click on image to remove)
+				FAVORITES: {favorites.length}{' '}
+				{!favorites.length ? null : '(Click on image to remove)'}
 			</span>
 			<div className='flex flex-wrap h-fit border-4 border-white rounded-lg mb-4'>
 				{favorites.map((image: any) => (
-					<button
+					<Image
 						key={image.id}
-						type='button'
+						src={image.url}
+						alt={image.url}
+						width={96}
+						height={72}
+						className='border-2 border-white rounded-lg m-1'
 						onClick={() => removeFavoriteHandler(image)}
-					>
-						<Image
-							key={image.id}
-							src={image.url}
-							alt={image.url}
-							width={96}
-							height={72}
-							className='border-2 border-white rounded-lg m-1'
-						/>
-					</button>
+					/>
 				))}
 			</div>
 			<Carousel
@@ -88,7 +84,7 @@ const ImageCarousel = ({ data }: any) => {
 							onClick={() => addToFavoritesHandler(image)}
 							className='border-2 border-white rounded-lg p-1 bg-white m-2'
 						>
-							Me Likey
+							Add to Favorites
 						</button>
 						<Image
 							key={image.id}
@@ -96,6 +92,7 @@ const ImageCarousel = ({ data }: any) => {
 							src={image.url}
 							width={450}
 							height={200}
+							onClick={() => console.log('works')}
 						/>
 					</>
 				))}
