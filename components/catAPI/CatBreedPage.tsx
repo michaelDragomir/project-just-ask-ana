@@ -41,8 +41,11 @@ const CatBreedPage = async ({ context }: any) => {
 								/>
 								{SearchParamsArr.map((item: any) => (
 									<>
-										<div className='mx-auto border-2 border-sky-500 rounded-lg w-fit p-2 mt-8 bg-sky-100'>
-											<ul>
+										<div
+											key={item.name}
+											className='mx-auto border-2 border-sky-500 rounded-lg w-fit p-2 mt-8 bg-sky-100'
+										>
+											<ul key={item.name}>
 												<li className='pb-2' key={item.name}>
 													<span className='underline underline-offset-2 pr-3'>
 														Name:
@@ -63,8 +66,11 @@ const CatBreedPage = async ({ context }: any) => {
 												</li>
 											</ul>
 										</div>
-										<div className='flex mx-auto items-center flex-col border-2 border-sky-500 rounded-lg w-fit p-4 mt-8 bg-sky-100'>
-											<ul>
+										<div
+											key={item.id}
+											className='flex mx-auto items-center flex-col border-2 border-sky-500 rounded-lg w-fit p-4 mt-8 bg-sky-100'
+										>
+											<ul key={item.id}>
 												<li key={item.id} className='flex pb-4'>
 													Adaptability:
 													<span className='flex items-center space-x-2.5 text-sky-600 ml-2'>
