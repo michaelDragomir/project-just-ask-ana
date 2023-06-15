@@ -124,7 +124,7 @@ const CatBreedPage = async ({ context }: any) => {
 												<li key={item.id} className='flex'>
 													Loves a Lap:
 													<span className='flex items-center space-x-2.5 text-sky-600 ml-2'>
-														{Array(parseInt(SearchParamsArr[0].lap)).fill(
+														{Array(parseInt(SearchParamsArr[0].lap) || 0).fill(
 															<FaCat />,
 														)}
 													</span>
