@@ -1,5 +1,6 @@
+import MainPage from '@/components/NewsAPI/MainPage';
 const theNewsHomePage = () => {
-	return <div>The News HP</div>;
+	return <MainPage />;
 };
 
 export default theNewsHomePage;
