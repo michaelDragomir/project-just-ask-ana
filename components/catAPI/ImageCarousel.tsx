@@ -48,7 +48,7 @@ const ImageCarousel = ({ data }: any) => {
 				FAVORITES: {favorites.length}{' '}
 				{!favorites.length ? null : '(Click on image to remove)'}
 			</span>
-			<div className='flex flex-wrap h-28 border-4 border-white rounded-lg mb-4'>
+			<div className='flex flex-wrap h-28 border-2 border-white rounded-lg mb-4'>
 				{favorites.map((image: any) => (
 					<Image
 						key={image.id}
