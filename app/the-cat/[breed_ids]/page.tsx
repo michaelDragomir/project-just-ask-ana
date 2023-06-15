@@ -1,11 +1,14 @@
 import CatBreedPage from '@/components/catAPI/CatBreedPage';
+import { Suspense } from 'react';
 
 const CatPage = (context: { context: any }) => {
 	console.log('context', context);
 	return (
 		<>
 			<div className='text-center'>
-				<CatBreedPage context={context} />
+				<Suspense fallback={<div>Loading Cat Info...</div>}>
+					<CatBreedPage context={context} />
+				</Suspense>
 			</div>
 		</>
 	);
