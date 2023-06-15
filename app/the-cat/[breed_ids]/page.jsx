@@ -2,7 +2,7 @@ import CatBreedPage from '@/components/catAPI/CatBreedPage';
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-const CatPage = (context: { context: any }) => {
+const CatPage = (context) => {
 	return (
 		<>
 			<div className='text-center'>
