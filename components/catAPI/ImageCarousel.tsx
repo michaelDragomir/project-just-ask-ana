@@ -77,7 +77,7 @@ const ImageCarousel = ({ data }: any) => {
 							key={cat.url}
 							type='button'
 							onClick={() => addToFavoritesHandler(cat)}
-							className='border-2 border-white rounded-lg p-1 bg-white m-2 absolute top-0 left-0 right-0'
+							className='border-2 border-white rounded-lg p-1 bg-white absolute top-7 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-75'
 						>
 							Add to Favorites
 						</button>
