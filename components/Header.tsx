@@ -9,6 +9,7 @@ const Header = () => {
 				<Link
 					className='uppercase rounded-lg bg-lightGrey hover:bg-darkGrey transition delay-100 p-2 mr-8'
 					href='https://github.com/michaelDragomir/project-just-ask-ana'
+					target='_blank'
 				>
 					project repo
 				</Link>
