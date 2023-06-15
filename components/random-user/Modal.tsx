@@ -14,7 +14,7 @@ const UserModal = () => {
 				<Box className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 bg-slate-200 border-2 border-sky-500 shadow-lg'>
 					<div className='text-center p-2'>
 						<Typography className='text-center'>
-							Click on a header item in table to sort data.
+							Click on any header item to sort data.
 						</Typography>
 						<button
 							type='button'
