@@ -23,9 +23,11 @@ const MainPage = async () => {
 	console.log('NEWS DATA------', articles);
 	return (
 		<div>
-			{articles.map((item: any) => (
-				<li>{item.title}</li>
-			))}
+			<ul>
+				{articles.map((item: any) => (
+					<li>{item.title}</li>
+				))}
+			</ul>
 		</div>
 	);
 };

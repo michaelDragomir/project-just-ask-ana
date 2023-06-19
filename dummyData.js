@@ -19,7 +19,7 @@ export const DUMMYDATA = [
 		id: '3',
 		title: 'The News API',
 		image:
-			'http://americanrecyclingca.com/wp-content/uploads/2011/01/shutterstock_186319661-300x281.jpg',
+			'https://static.vecteezy.com/system/resources/thumbnails/001/950/054/small/newspaper-mockup-template-free-vector.jpg',
 		overlay: 'No news is good news',
 		color: 'white',
 		url: 'the-news/',
