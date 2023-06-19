@@ -1,4 +1,4 @@
-export const DUMMYDATA = [
+export const FRONT_PAGE_DATA = [
 	{
 		id: '1',
 		title: 'Random User API',
@@ -50,5 +50,68 @@ export const DUMMYDATA = [
 		overlay: 'We are a mere speck',
 		color: 'white',
 		url: 'astronomy-pic-of-day/',
+	},
+];
+
+export const COUNTRY_CODES = [
+	{
+		flagSrc: 'https://newsapi.org/images/flags/us.svg',
+		country: 'United States',
+		country_code: 'us',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/hk.svg',
+		country: 'Hong Kong',
+		country_code: 'hk',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/tw.svg',
+		country: 'Taiwan',
+		country_code: 'tw',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/kr.svg',
+		country: 'South Korea',
+		country_code: 'kr',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/cn.svg',
+		country: 'China',
+		country_code: 'cn',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/de.svg',
+		country: 'Germany',
+		country_code: 'de',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/jp.svg',
+		country: 'Japan',
+		country_code: 'jp',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/il.svg',
+		country: 'Israel',
+		country_code: 'il',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/gb.svg',
+		country: 'United Kingdom',
+		country_code: 'uk',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/ru.svg',
+		country: 'Russia',
+		country_code: 'ru',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/my.svg',
+		country: 'Malaysia',
+		country_code: 'my',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/sg.svg',
+		country: 'Singapore',
+		country_code: 'sg',
 	},
 ];

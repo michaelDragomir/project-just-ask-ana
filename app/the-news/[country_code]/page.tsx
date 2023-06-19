@@ -4,11 +4,11 @@ import Link from 'next/link';
 import NewsPage from '@/components/NewsAPI/NewsPage';
 
 const NewsContentPage = ({
-	params: { title },
+	params: { country_code },
 }: {
-	params: { title: string };
+	params: { country_code: string };
 }) => {
-	console.log('title', title);
+	console.log('country_code', country_code);
 
 	return (
 		<>
@@ -22,7 +22,7 @@ const NewsContentPage = ({
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					<NewsPage title={title} />
+					<NewsPage country_code={country_code} />
 				</Suspense>
 			</div>
 		</>
