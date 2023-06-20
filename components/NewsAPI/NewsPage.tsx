@@ -21,8 +21,6 @@ const MainPage = async ({ country }: any) => {
 
 	const { articles } = countryData;
 
-	console.log('!!!!NEWSPAGE----DATA', countryData);
-
 	return (
 		<>
 			<div>

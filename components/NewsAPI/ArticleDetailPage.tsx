@@ -3,8 +3,6 @@ const ArticleDetailPage = ({ context }: any) => {
 		searchParams: { title, author, description, publishedAt, content },
 	} = context;
 
-	console.log('CONTEXT-------ATP', title);
-
 	return (
 		<>
 			<div>{title}</div>

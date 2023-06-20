@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
 
-const Test = (context: any) => {
-	console.log('------P------', context);
+const DetailPage = (context: any) => {
 	return (
 		<>
 			<div className='text-center'>
@@ -24,4 +23,4 @@ const Test = (context: any) => {
 	);
 };
 
-export default Test;
+export default DetailPage;
