@@ -5,7 +5,6 @@ import CardItem from '@/components/CardItem';
 import Cards from '@/components/Cards';
 import Link from 'next/link';
 
-console.log('!!!', FRONT_PAGE_DATA);
 const HomePage = () => {
 	return (
 		<div className='bg-slate-400 h-screen'>

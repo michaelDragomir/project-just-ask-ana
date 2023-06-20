@@ -8,11 +8,7 @@ const NewsContentPage = ({
 }: {
 	params: { country: string };
 }) => {
-	console.log('country!!!!!INSIDE DYNAMIC', country);
-
 	const urlDecode = decodeURIComponent(country.replace(/\+/g, ' '));
-
-	console.log('urlDecode!!!!!INSIDE DYNAMIC', urlDecode);
 
 	return (
 		<>
