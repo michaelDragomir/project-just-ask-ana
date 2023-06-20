@@ -16,7 +16,7 @@ const MainPage = async () => {
 				</div>
 			</header>
 			<div className='mx-auto sm:px-6 sm:py-8 flex flex-wrap justify-center items-center'>
-				<div className='grid gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-4'>
+				<div className='grid gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-3'>
 					{COUNTRY_CODES.map((item) => {
 						return (
 							<>
