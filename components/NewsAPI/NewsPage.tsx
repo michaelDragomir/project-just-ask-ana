@@ -1,7 +1,7 @@
 'use client';
 
-const MainPage = ({ title }: any) => {
-	return <div>hello news page {title}</div>;
+const MainPage = ({ country }: any) => {
+	return <div>hello news page {country}</div>;
 };
 
 export default MainPage;

@@ -4,11 +4,15 @@ import Link from 'next/link';
 import NewsPage from '@/components/NewsAPI/NewsPage';
 
 const NewsContentPage = ({
-	params: { country_code },
+	params: { country },
 }: {
-	params: { country_code: string };
+	params: { country: string };
 }) => {
-	console.log('country_code', country_code);
+	console.log('country!!!!!INSIDE DYNAMIC', country);
+
+	const urlDecode = decodeURIComponent(country.replace(/\+/g, ' '));
+
+	console.log('urlDecode!!!!!INSIDE DYNAMIC', urlDecode);
 
 	return (
 		<>
@@ -22,7 +26,7 @@ const NewsContentPage = ({
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					<NewsPage country_code={country_code} />
+					<NewsPage country={urlDecode} />
 				</Suspense>
 			</div>
 		</>

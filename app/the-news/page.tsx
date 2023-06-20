@@ -5,9 +5,9 @@ import CardItem from '@/components/CardItem';
 import Cards from '@/components/Cards';
 import Link from 'next/link';
 
-const getLatestNews = async (country_code: any) => {
+const getLatestNews = async (country: any) => {
 	const response = await fetch(
-		`https://newsapi.org/v2/top-headlines?country=${country_code}`,
+		`https://newsapi.org/v2/top-headlines?country=${country}`,
 		{
 			headers: {
 				'x-api-key': '373a44e44cde4b79bca78c553bcead34',
@@ -22,11 +22,13 @@ const getLatestNews = async (country_code: any) => {
 	return data;
 };
 
-const MainPage = async (country_code: any) => {
-	const newsData = await getLatestNews(country_code);
+const MainPage = async (country: any) => {
+	// const urlDecode = decodeURIComponent(country.replace(/\+/g, ' '));
+	const newsData = await getLatestNews(country);
 
 	const { articles } = newsData;
 
+	console.log('country------', country);
 	console.log('NEWS DATA------', articles);
 	return (
 		<div>
@@ -48,7 +50,7 @@ const MainPage = async (country_code: any) => {
 										<Cards>
 											<CardItem title={item.country} />
 										</Cards>
-										<Link href={`/`}>
+										<Link href={`/the-news/country=${item.country_code}`}>
 											<Image
 												className='h-64 w-full object-cover object-center hover:opacity-50 transition delay-100'
 												src={item.flagSrc}
