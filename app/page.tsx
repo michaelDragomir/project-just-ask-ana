@@ -5,6 +5,7 @@ import CardItem from '@/components/CardItem';
 import Cards from '@/components/Cards';
 import Link from 'next/link';
 
+console.log('!!!', FRONT_PAGE_DATA);
 const HomePage = () => {
 	return (
 		<div className='bg-slate-400 h-screen'>
@@ -23,15 +24,15 @@ const HomePage = () => {
 					{FRONT_PAGE_DATA.map((item: any) => {
 						return (
 							<>
-								<div key={item.country}>
+								<div key={item.title}>
 									<div className='w-64 shadow-lg shadow-slate-500 border-gray-300 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200'>
 										<Cards>
-											<CardItem title={item.country}></CardItem>
+											<CardItem title={item.title} />
 										</Cards>
 										<Link href={item.url}>
 											<Image
 												className='h-64 w-full object-cover object-center hover:opacity-50 transition delay-100'
-												src={item.flagSrc}
+												src={item.image}
 												alt='api images'
 												width={0}
 												height={0}
