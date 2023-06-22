@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const getCountryLatestNews = async (country: any) => {
 	const response = await fetch(
-		`https://newsapi.org/v2/top-headlines?${country}&category=technology`,
+		`https://newsapi.org/v2/everything?q=technology+entertainment&sortBy=popularity`,
 		{
 			headers: {
 				'x-api-key': '373a44e44cde4b79bca78c553bcead34',
