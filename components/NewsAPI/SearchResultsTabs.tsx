@@ -4,7 +4,7 @@ const TABS = ['ALL', 'POPULAR', 'RELAVANT', 'LATEST ARTICLES'];
 const SearchResultsTabs = () => {
 	return (
 		<>
-			<div>
+			<div className=''>
 				<TabSlider TabItems={TABS} />
 			</div>
 		</>

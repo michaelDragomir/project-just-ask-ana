@@ -1,10 +1,14 @@
 const TabSlider = ({ TabItems }: { TabItems: any }) => {
 	return (
 		<>
-			<div>
+			<div className='w-full relative flex flex-row justify-center'>
 				{TabItems.map((item: any, index: any) => (
-					<div className=''>
-						<button type='button' className='' key={`tab-slider-tab-${index}`}>
+					<div className='pr-6'>
+						<button
+							type='button'
+							className='hover:border-b-2 border-sky-500'
+							key={`tab-slider-tab-${index}`}
+						>
 							{item}
 						</button>
 					</div>

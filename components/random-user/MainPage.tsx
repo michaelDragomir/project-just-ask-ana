@@ -168,7 +168,7 @@ const MainPage = () => {
 				value={inputFieldValue}
 				onChange={(e) => setInputFieldValue(e.target.value)}
 				placeholder='search table'
-			></input>
+			/>
 			<button
 				type='button'
 				className='mb-3 uppercase rounded-lg bg-neutral-400 hover:bg-darkGrey transition delay-100 p-2'
