@@ -2,36 +2,43 @@
 
 import { useState } from 'react';
 
-const TabSlider = ({ tabItems }: { tabItems: any; handleTabClick: any }) => {
-	const [activeTab, setActiveTab] = useState<any>(tabItems[0]);
+const TabSlider = ({ tabItems }: { tabItems: any }) => {
+	const [activeTab, setActiveTab] = useState<any>(0);
 
-	const test = (item: any) => {
-		setActiveTab(item);
-		console.log('handleclick', activeTab);
-	};
+	// const test = (item: any) => {
+	// 	setActiveTab(item);
+	// 	console.log('handleclick', activeTab);
+	// };
 
 	return (
 		<>
-			<div className='w-full relative flex flex-row justify-center'>
-				{tabItems.map((item: any, index: any) => {
-					console.log('inside', item);
-					return (
-						<div className='pr-6' key={`tab-slider-tab-${index}`}>
+			<div className='px-4 md:px-8 w-full flex justify-center'>
+				<ul
+					role='tablist'
+					className='max-w-screen-xl mx-auto flex items-center gap-x-6 overflow-x-auto text-sm'
+				>
+					{tabItems.map((item: any, idx: any) => (
+						<li
+							key={idx}
+							className={`py-2 border-b ${
+								activeTab == idx
+									? 'border-indigo-600 text-indigo-600'
+									: 'border-white text-gray-500'
+							}`}
+						>
 							<button
-								type='button'
-								className={`relative hover:border-b-2 border-sky-500 ${
-									tabItems[index] === activeTab
-										? 'border-b-2 border-sky-900'
-										: ''
-								}`}
-								key={item.index}
-								onClick={() => test(item)}
+								role='tab'
+								aria-selected={activeTab == idx ? true : false}
+								aria-controls={`tabpanel-${idx + 1}`}
+								className='flex items-center gap-x-2 py-2 px-2 rounded-lg duration-150 hover:text-indigo-600 hover:bg-gray-50 active:bg-gray-100 font-medium'
+								onClick={() => setActiveTab(idx)}
 							>
-								{item}
+								{item.icon}
+								{item.name}
 							</button>
-						</div>
-					);
-				})}
+						</li>
+					))}
+				</ul>
 			</div>
 		</>
 	);
