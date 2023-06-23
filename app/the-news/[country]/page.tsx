@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-import NewsPage from '@/components/NewsAPI/NewsPage';
+// import NewsPage from '@/components/NewsAPI/NewsPage';
 
 const NewsContentPage = ({
 	params: { country },
@@ -22,7 +22,7 @@ const NewsContentPage = ({
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					<NewsPage country={urlDecode} />
+					{/* <NewsPage country={urlDecode} /> */}
 				</Suspense>
 			</div>
 		</>

@@ -7,7 +7,50 @@ import Link from 'next/link';
 
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 
+const getAllNews = async () => {
+	const response = await fetch(
+		`https://newsapi.org/v2/everything?domains=cnn.com`,
+		{
+			headers: {
+				'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+			},
+			next: { revalidate: 7200 },
+		},
+	);
+
+	const data = await response.json();
+
+	return data;
+};
+
+const getSortedByNews = async (tabName: any) => {
+	const response = await fetch(
+		`https://newsapi.org/v2/everything?domains=cnn.com&sortBy=${tabName}`,
+		{
+			headers: {
+				'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+			},
+			next: { revalidate: 7200 },
+		},
+	);
+
+	const data = await response.json();
+
+	return data;
+};
+
 const MainPage = async () => {
+	const { articles } = await getAllNews();
+
+	const handleTabClick = async (tabName: any) => {
+		const { articles } = await getSortedByNews(tabName);
+		return articles;
+	};
+
+	//have a tab click function that takes an input and sends it to the fetch function.
+
+	console.log('!!!!', articles);
+
 	return (
 		<div>
 			<header className='mx-auto w-3/4 h-auto pt-4 text-2xl text-center text-slate-700 mb-7'>
@@ -22,6 +65,11 @@ const MainPage = async () => {
 			{/* <div className='mx-auto sm:px-6 sm:py-8 flex flex-wrap justify-center items-center bg-blue'> */}
 			<div className=''>
 				<SearchResultsTabs />
+				<ul>
+					{articles.map((article: any) => (
+						<li>{article.title}</li>
+					))}
+				</ul>
 				{/* <div className='grid gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-3'>
 					{COUNTRY_CODES.map((item) => {
 						return (

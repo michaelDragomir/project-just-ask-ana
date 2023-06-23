@@ -1,11 +1,13 @@
+'use client';
+
 import TabSlider from './TabSlider';
 
 const TABS = ['ALL', 'POPULAR', 'RELAVANT', 'LATEST ARTICLES'];
-const SearchResultsTabs = () => {
+const SearchResultsTabs = ({ handleTabClick }: { handleTabClick: any }) => {
 	return (
 		<>
 			<div className=''>
-				<TabSlider tabItems={TABS} />
+				<TabSlider tabItems={TABS} handleTabClick={handleTabClick} />
 			</div>
 		</>
 	);
