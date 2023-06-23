@@ -1,15 +1,9 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-import NewsPage from '@/components/NewsAPI/NewsPage';
+import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
 
-const NewsContentPage = ({
-	params: { title },
-}: {
-	params: { title: string };
-}) => {
-	console.log('title', title);
-
+const DetailPage = (context: any) => {
 	return (
 		<>
 			<div className='text-center'>
@@ -22,11 +16,11 @@ const NewsContentPage = ({
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					<NewsPage title={title} />
+					<ArticleDetailPage context={context} />
 				</Suspense>
 			</div>
 		</>
 	);
 };
 
-export default NewsContentPage;
+export default DetailPage;

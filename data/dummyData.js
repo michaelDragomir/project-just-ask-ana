@@ -1,4 +1,4 @@
-export const DUMMYDATA = [
+export const FRONT_PAGE_DATA = [
 	{
 		id: '1',
 		title: 'Random User API',
@@ -50,5 +50,38 @@ export const DUMMYDATA = [
 		overlay: 'We are a mere speck',
 		color: 'white',
 		url: 'astronomy-pic-of-day/',
+	},
+];
+
+export const COUNTRY_CODES = [
+	{
+		flagSrc: 'https://newsapi.org/images/flags/us.svg',
+		country: 'United States',
+		country_code: 'us',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/in.svg',
+		country: 'India',
+		country_code: 'in',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/nl.svg',
+		country: 'Netherlands',
+		country_code: 'nl',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/ph.svg',
+		country: 'Philippines',
+		country_code: 'ph',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/sa.svg',
+		country: 'Saudi Arabia',
+		country_code: 'sa',
+	},
+	{
+		flagSrc: 'https://newsapi.org/images/flags/ua.svg',
+		country: 'Ukraine',
+		country_code: 'ua',
 	},
 ];
