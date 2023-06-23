@@ -5,7 +5,7 @@ const SearchResultsTabs = () => {
 	return (
 		<>
 			<div className=''>
-				<TabSlider TabItems={TABS} />
+				<TabSlider tabItems={TABS} />
 			</div>
 		</>
 	);
