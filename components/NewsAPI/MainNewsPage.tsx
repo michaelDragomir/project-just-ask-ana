@@ -7,6 +7,7 @@ import { SlMagnifier } from 'react-icons/sl';
 const MainNewsPage = () => {
 	const [popularNewsArticles, setPopularNewsArticles] = useState<any>([]);
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
+	const [tabItem, setTabItem] = useState<string>('popularity');
 
 	const enodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
@@ -41,11 +42,17 @@ const MainNewsPage = () => {
 		console.log('inside search', inputFieldValue);
 
 		getNewsByPopularity(enodedURLValue);
-		setInputFieldValue('');
+		// setInputFieldValue('');
 	};
 
-	console.log('articles-POPULAR', popularNewsArticles);
-	console.log('inputFieldValue', inputFieldValue);
+	const handleTabClick = (selectedTab: any) => {
+		setTabItem(selectedTab);
+		console.log('inside testTabClick selectedTab >>>', selectedTab);
+	};
+
+	// console.log('articles-POPULAR', popularNewsArticles);
+	// console.log('inputFieldValue', inputFieldValue);
+	console.log('tab item in mainPage', tabItem);
 
 	return (
 		<>
@@ -61,7 +68,7 @@ const MainNewsPage = () => {
 				<button className='relative' type='submit' onClick={search}>
 					<SlMagnifier className='w-4 h-4 absolute bottom-7 left-[70px] text-slate-400' />
 				</button>
-				<SearchResultsTabs />
+				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
 		</>
 	);

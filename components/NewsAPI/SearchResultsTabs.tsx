@@ -19,11 +19,11 @@ const tabItems = [
 		name: 'publishedAt',
 	},
 ];
-const SearchResultsTabs = () => {
+const SearchResultsTabs = ({ handleTabClick }: { handleTabClick: any }) => {
 	return (
 		<>
 			<div className=''>
-				<TabSlider tabItems={tabItems} />
+				<TabSlider tabItems={tabItems} onClick={handleTabClick} />
 			</div>
 		</>
 	);
