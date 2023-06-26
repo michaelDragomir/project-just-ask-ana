@@ -30,14 +30,7 @@ const MainNewsPage = () => {
 			);
 			const { articles } = await response.json();
 
-			if (
-				newsArticles.length !== articles.length ||
-				!newsArticles.every(
-					(value: any, index: any) => value === articles[index],
-				)
-			) {
-				setNewsArticles(articles);
-			}
+			setNewsArticles(articles);
 
 			return articles;
 		};
@@ -53,12 +46,7 @@ const MainNewsPage = () => {
 
 	const handleTabClick = (selectedTab: any) => {
 		setTabItem(selectedTab);
-		console.log('inside testTabClick selectedTab >>>', selectedTab);
 	};
-
-	console.log('NEWS ARTICLES', newsArticles);
-	console.log('inputFieldValue', inputFieldValue);
-	console.log('tab item in mainPage', tabItem);
 
 	return (
 		<>
