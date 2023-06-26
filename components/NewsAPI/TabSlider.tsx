@@ -7,10 +7,8 @@ const TabSlider = ({ tabItems, onClick }: { tabItems: any; onClick: any }) => {
 
 	const handleTabClick = (tabItem: any) => {
 		setActiveTab(tabItem);
-		console.log('-----------------', tabItem);
 		onClick(tabItem);
 	};
-	console.log('ACTIVE TAB---', activeTab);
 
 	return (
 		<>

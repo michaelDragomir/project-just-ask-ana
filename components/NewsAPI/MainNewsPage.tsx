@@ -13,26 +13,36 @@ const MainNewsPage = () => {
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
-	const getNewsByPopularity = async (queries: any) => {
-		console.log(
-			'URL WITH PARAMS---',
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
-		);
-		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
-			{
-				headers: {
-					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+	useEffect(() => {
+		const getNewsByPopularity = async (queries: any) => {
+			console.log(
+				'URL WITH PARAMS---',
+				`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+			);
+			const response = await fetch(
+				`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+				{
+					headers: {
+						'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+					},
+					next: { revalidate: 7200 },
 				},
-				next: { revalidate: 7200 },
-			},
-		);
-		const { articles } = await response.json();
+			);
+			const { articles } = await response.json();
 
-		setNewsArticles(articles);
+			if (
+				newsArticles.length !== articles.length ||
+				!newsArticles.every(
+					(value: any, index: any) => value === articles[index],
+				)
+			) {
+				setNewsArticles(articles);
+			}
 
-		return articles;
-	};
+			return articles;
+		};
+		getNewsByPopularity(enodedURLValue);
+	}, [tabItem]);
 
 	const search = (e: any) => {
 		e.preventDefault();
@@ -41,7 +51,6 @@ const MainNewsPage = () => {
 
 		console.log('inside search', inputFieldValue);
 
-		getNewsByPopularity(enodedURLValue);
 		// setInputFieldValue('');
 	};
 

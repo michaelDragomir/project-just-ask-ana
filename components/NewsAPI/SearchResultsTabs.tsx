@@ -3,8 +3,6 @@
 import TabSlider from './TabSlider';
 import { SlBookOpen, SlFire, SlCalender } from 'react-icons/sl';
 
-type Tabs = any;
-
 const tabItems = [
 	{
 		icon: <SlFire className='w-5 h-5' />,
