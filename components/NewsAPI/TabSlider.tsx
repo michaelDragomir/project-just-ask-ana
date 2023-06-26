@@ -3,7 +3,9 @@
 import { useState } from 'react';
 
 const TabSlider = ({ tabItems }: { tabItems: any }) => {
-	const [activeTab, setActiveTab] = useState<any>(0);
+	const [activeTab, setActiveTab] = useState<any>(tabItems[0].name);
+
+	console.log('ACTIVE TAB', activeTab);
 
 	return (
 		<>
@@ -16,14 +18,14 @@ const TabSlider = ({ tabItems }: { tabItems: any }) => {
 						<button
 							role='tab'
 							key={idx}
-							aria-selected={activeTab == idx ? true : false}
-							aria-controls={`tabpanel-${idx + 1}`}
+							// aria-selected={activeTab == idx ? true : false}
+							// aria-controls={`tabpanel-${idx + 1}`}
 							className={`flex items-center gap-x-2 py-2 border-b px-2 rounded-lg duration-150 hover:text-indigo-600 hover:bg-gray-50 active:bg-gray-100 font-medium ${
-								activeTab == idx
+								activeTab === tabItems[idx].name
 									? 'border-sky-600 text-sky-600'
 									: 'border-white text-gray-500'
 							}`}
-							onClick={() => setActiveTab(idx)}
+							onClick={() => setActiveTab(tabItems[idx].name)}
 						>
 							{item.icon}
 							{item.name}
