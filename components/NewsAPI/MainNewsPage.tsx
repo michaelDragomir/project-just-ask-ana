@@ -42,16 +42,13 @@ const MainNewsPage = () => {
 			return articles;
 		};
 		getNewsByPopularity(enodedURLValue);
-	}, [tabItem]);
+	}, [tabItem, inputFieldValue]);
 
-	const search = (e: any) => {
-		e.preventDefault();
+	const onChangeValueHandler = (e: any) => {
+		const { value } = e.target;
 
-		if (!inputFieldValue.length) return;
-
-		console.log('inside search', inputFieldValue);
-
-		// setInputFieldValue('');
+		const inputvalue = value;
+		setInputFieldValue(inputvalue);
 	};
 
 	const handleTabClick = (selectedTab: any) => {
@@ -72,9 +69,9 @@ const MainNewsPage = () => {
 					placeholder='Search...'
 					type='text'
 					value={inputFieldValue}
-					onChange={(e) => setInputFieldValue(e.target.value)}
+					onChange={(e) => onChangeValueHandler(e)}
 				/>
-				<button className='relative' type='submit' onClick={search}>
+				<button className='relative' type='submit'>
 					<SlMagnifier className='w-4 h-4 absolute bottom-7 left-[70px] text-slate-400' />
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
