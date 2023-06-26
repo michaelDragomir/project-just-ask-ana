@@ -5,7 +5,7 @@ import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 import { SlMagnifier } from 'react-icons/sl';
 
 const MainNewsPage = () => {
-	const [popularNewsArticles, setPopularNewsArticles] = useState<any>([]);
+	const [newsArticles, setNewsArticles] = useState<any>([]);
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [tabItem, setTabItem] = useState<string>('popularity');
 
@@ -16,10 +16,10 @@ const MainNewsPage = () => {
 	const getNewsByPopularity = async (queries: any) => {
 		console.log(
 			'URL WITH PARAMS---',
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=popularity`,
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
 		);
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=popularity`,
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
@@ -29,7 +29,7 @@ const MainNewsPage = () => {
 		);
 		const { articles } = await response.json();
 
-		setPopularNewsArticles(articles);
+		setNewsArticles(articles);
 
 		return articles;
 	};
@@ -50,8 +50,8 @@ const MainNewsPage = () => {
 		console.log('inside testTabClick selectedTab >>>', selectedTab);
 	};
 
-	// console.log('articles-POPULAR', popularNewsArticles);
-	// console.log('inputFieldValue', inputFieldValue);
+	console.log('NEWS ARTICLES', newsArticles);
+	console.log('inputFieldValue', inputFieldValue);
 	console.log('tab item in mainPage', tabItem);
 
 	return (
@@ -70,6 +70,11 @@ const MainNewsPage = () => {
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
+			<ul>
+				{newsArticles.map((item: any, idx: any) => (
+					<li key={idx}>{item.title}</li>
+				))}
+			</ul>
 		</>
 	);
 };
