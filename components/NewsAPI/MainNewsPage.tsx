@@ -70,11 +70,13 @@ const MainNewsPage = () => {
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
-			<ul>
-				{newsArticles.map((item: any, idx: any) => (
-					<li key={idx}>{item.title}</li>
-				))}
-			</ul>
+			<div className='pt-9 mx-auto inline-block text-left'>
+				<ul>
+					{newsArticles.map((item: any, idx: any) => (
+						<li key={idx}>{item.title}</li>
+					))}
+				</ul>
+			</div>
 		</>
 	);
 };
