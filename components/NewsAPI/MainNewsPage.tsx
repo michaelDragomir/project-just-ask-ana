@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 import { SlMagnifier } from 'react-icons/sl';
 
@@ -8,6 +8,8 @@ const MainNewsPage = () => {
 	const [newsArticles, setNewsArticles] = useState<any>([]);
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [tabItem, setTabItem] = useState<string>('popularity');
+
+	const popularityRef = useRef(false);
 
 	const enodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
@@ -34,10 +36,15 @@ const MainNewsPage = () => {
 
 			return articles;
 		};
-		getNewsByPopularity(enodedURLValue);
+
+		if (!popularityRef.current) {
+			getNewsByPopularity(enodedURLValue);
+			popularityRef.current = true;
+		}
 	}, [tabItem, inputFieldValue]);
 
 	const onChangeValueHandler = (e: any) => {
+		popularityRef.current = false;
 		const { value } = e.target;
 
 		const inputvalue = value;
