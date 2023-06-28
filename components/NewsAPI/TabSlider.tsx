@@ -28,7 +28,7 @@ const TabSlider = ({ tabItems, onClick }: { tabItems: any; onClick: any }) => {
 							}`}
 							onClick={() => handleTabClick(item.name)}
 						>
-							{item.icon}
+							{activeTab === tabItems[idx].name ? item.iconFilled : item.icon}
 							{item.name}
 						</button>
 					))}

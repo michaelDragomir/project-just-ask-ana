@@ -1,19 +1,30 @@
 'use client';
 
 import TabSlider from './TabSlider';
-import { SlBookOpen, SlFire, SlCalender } from 'react-icons/sl';
+// import { SlBookOpen, SlFire, SlCalender } from 'react-icons/sl';
+import {
+	AiOutlineFire,
+	AiTwotoneFire,
+	AiFillRead,
+	AiOutlineRead,
+	AiOutlineCalendar,
+	AiFillCalendar,
+} from 'react-icons/ai';
 
 const tabItems = [
 	{
-		icon: <SlFire className='w-5 h-5' />,
+		icon: <AiOutlineFire className='w-5 h-5' />,
+		iconFilled: <AiTwotoneFire className='w-5 h-5' />,
 		name: 'popularity',
 	},
 	{
-		icon: <SlBookOpen className='w-5 h-5' />,
+		icon: <AiOutlineRead className='w-5 h-5' />,
+		iconFilled: <AiFillRead className='w-5 h-5' />,
 		name: 'relevancy',
 	},
 	{
-		icon: <SlCalender className='w-5 h-5' />,
+		icon: <AiOutlineCalendar className='w-5 h-5' />,
+		iconFilled: <AiFillCalendar className='w-5 h-5' />,
 		name: 'publishedAt',
 	},
 ];

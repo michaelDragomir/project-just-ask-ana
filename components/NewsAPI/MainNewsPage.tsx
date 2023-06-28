@@ -9,38 +9,38 @@ const MainNewsPage = () => {
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [tabItem, setTabItem] = useState<string>('popularity');
 
+	console.log('TAB', tabItem);
+
 	const popularityRef = useRef(false);
+	console.log('popularityRef', popularityRef);
 
 	const enodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
-	useEffect(() => {
-		const getNewsByPopularity = async (queries: any) => {
-			console.log(
-				'URL WITH PARAMS---',
-				`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
-			);
-			const response = await fetch(
-				`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
-				{
-					headers: {
-						'x-api-key': '373a44e44cde4b79bca78c553bcead34',
-					},
-					next: { revalidate: 7200 },
+	const getNewsByPopularity = async (queries: any) => {
+		console.log(
+			'URL WITH PARAMS---',
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+		);
+		const response = await fetch(
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+			{
+				headers: {
+					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
 				},
-			);
-			const { articles } = await response.json();
+				next: { revalidate: 7200 },
+			},
+		);
+		const { articles } = await response.json();
 
-			setNewsArticles(articles);
+		setNewsArticles(articles);
 
-			return articles;
-		};
+		return articles;
+	};
 
-		if (!popularityRef.current) {
-			getNewsByPopularity(enodedURLValue);
-			popularityRef.current = true;
-		}
+	useEffect(() => {
+		getNewsByPopularity(enodedURLValue);
 	}, [tabItem, inputFieldValue]);
 
 	const onChangeValueHandler = (e: any) => {
@@ -52,7 +52,11 @@ const MainNewsPage = () => {
 	};
 
 	const handleTabClick = (selectedTab: any) => {
-		setTabItem(selectedTab);
+		if (!popularityRef.current) {
+			setTabItem(selectedTab);
+			popularityRef.current = true;
+		}
+		popularityRef.current = false;
 	};
 
 	return (
