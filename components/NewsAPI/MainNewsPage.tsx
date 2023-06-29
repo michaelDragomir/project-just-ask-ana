@@ -1,25 +1,37 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 import { SlMagnifier } from 'react-icons/sl';
 
 const MainNewsPage = () => {
-	const [newsArticles, setNewsArticles] = useState<any>([]);
+	const [popularArticles, setPopularArticles] = useState<any>([]);
+	const [relevantArticles, setRelevantArticles] = useState<any>([]);
+	const [latestArticles, setLatestArticles] = useState<any>([]);
+
+	const popRef = useRef(false);
+	const relRef = useRef(false);
+	const latestRef = useRef(false);
+
+	console.log('popRef', popRef.current);
+	console.log('relRef', relRef.current);
+	console.log('latestRef', latestRef.current);
+
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
-	const [tabItem, setTabItem] = useState<string>('popularity');
+	const [activeTab, setActiveTab] = useState<string>('popularity');
 
 	const enodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
-	const getNewsByPopularity = async (queries: any) => {
+	const getNewsArticles = async (queries: any) => {
 		console.log(
 			'URL WITH PARAMS---',
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${activeTab}`,
 		);
+
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${tabItem}`,
+			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
@@ -29,14 +41,33 @@ const MainNewsPage = () => {
 		);
 		const { articles } = await response.json();
 
-		setNewsArticles(articles);
-
-		return articles;
+		switch (activeTab) {
+			case 'popularity':
+				if (!popRef.current) {
+					setPopularArticles(articles);
+					relRef.current = true;
+				}
+				break;
+			case 'relevancy':
+				if (!relRef.current) {
+					setRelevantArticles(articles);
+					relRef.current = true;
+				}
+				break;
+			case 'publishedAt':
+				if (!latestRef.current) {
+					setLatestArticles(articles);
+					latestRef.current = true;
+				}
+				break;
+			default:
+				return null;
+		}
 	};
 
 	useEffect(() => {
-		getNewsByPopularity(enodedURLValue);
-	}, [tabItem, inputFieldValue]);
+		getNewsArticles(enodedURLValue);
+	}, [activeTab, inputFieldValue]);
 
 	const onChangeValueHandler = (e: any) => {
 		const { value } = e.target;
@@ -46,7 +77,30 @@ const MainNewsPage = () => {
 	};
 
 	const handleTabClick = (selectedTab: any) => {
-		setTabItem(selectedTab);
+		popRef.current = false;
+		relRef.current = false;
+		latestRef.current = false;
+
+		setActiveTab(selectedTab);
+	};
+
+	const displayArticles = () => {
+		switch (activeTab) {
+			case 'popularity':
+				return popularArticles.map((item: any, idx: any) => (
+					<li key={idx}>{item.title}</li>
+				));
+			case 'relevancy':
+				return relevantArticles.map((item: any, idx: any) => (
+					<li key={idx}>{item.title}</li>
+				));
+			case 'publishedAt':
+				return latestArticles.map((item: any, idx: any) => (
+					<li key={idx}>{item.title}</li>
+				));
+			default:
+				return null;
+		}
 	};
 
 	return (
@@ -66,11 +120,7 @@ const MainNewsPage = () => {
 				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
 			<div className='pt-9 mx-auto inline-block text-left'>
-				<ul>
-					{newsArticles.map((item: any, idx: any) => (
-						<li key={idx}>{item.title}</li>
-					))}
-				</ul>
+				<ul>{displayArticles()}</ul>
 			</div>
 		</>
 	);
