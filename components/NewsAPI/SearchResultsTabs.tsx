@@ -1,11 +1,38 @@
-import TabSlider from './TabSlider';
+'use client';
 
-const TABS = ['ALL', 'POPULAR', 'RELAVANT', 'LATEST ARTICLES'];
-const SearchResultsTabs = () => {
+import TabSlider from './TabSlider';
+// import { SlBookOpen, SlFire, SlCalender } from 'react-icons/sl';
+import {
+	AiOutlineFire,
+	AiTwotoneFire,
+	AiFillRead,
+	AiOutlineRead,
+	AiOutlineCalendar,
+	AiFillCalendar,
+} from 'react-icons/ai';
+
+const tabItems = [
+	{
+		icon: <AiOutlineFire className='w-5 h-5' />,
+		iconFilled: <AiTwotoneFire className='w-5 h-5' />,
+		name: 'popularity',
+	},
+	{
+		icon: <AiOutlineRead className='w-5 h-5' />,
+		iconFilled: <AiFillRead className='w-5 h-5' />,
+		name: 'relevancy',
+	},
+	{
+		icon: <AiOutlineCalendar className='w-5 h-5' />,
+		iconFilled: <AiFillCalendar className='w-5 h-5' />,
+		name: 'publishedAt',
+	},
+];
+const SearchResultsTabs = ({ handleTabClick }: { handleTabClick: any }) => {
 	return (
 		<>
 			<div className=''>
-				<TabSlider tabItems={TABS} />
+				<TabSlider tabItems={tabItems} onClick={handleTabClick} />
 			</div>
 		</>
 	);
