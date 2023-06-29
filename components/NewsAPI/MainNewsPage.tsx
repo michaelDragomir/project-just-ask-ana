@@ -71,9 +71,7 @@ const MainNewsPage = () => {
 
 	const onChangeValueHandler = (e: any) => {
 		const { value } = e.target;
-
-		const inputvalue = value;
-		setInputFieldValue(inputvalue);
+		setInputFieldValue(value);
 	};
 
 	const handleTabClick = (selectedTab: any) => {
