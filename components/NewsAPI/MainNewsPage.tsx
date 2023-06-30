@@ -8,17 +8,12 @@ const MainNewsPage = () => {
 	const [popularArticles, setPopularArticles] = useState<any>([]);
 	const [relevantArticles, setRelevantArticles] = useState<any>([]);
 	const [latestArticles, setLatestArticles] = useState<any>([]);
+	const [inputFieldValue, setInputFieldValue] = useState<string>('');
+	const [activeTab, setActiveTab] = useState<string>('popularity');
 
 	const popRef = useRef(false);
 	const relRef = useRef(false);
 	const latestRef = useRef(false);
-
-	console.log('popRef', popRef.current);
-	console.log('relRef', relRef.current);
-	console.log('latestRef', latestRef.current);
-
-	const [inputFieldValue, setInputFieldValue] = useState<string>('');
-	const [activeTab, setActiveTab] = useState<string>('popularity');
 
 	const enodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
