@@ -12,7 +12,7 @@ const TabSlider = ({ tabItems, onClick }: { tabItems: any; onClick: any }) => {
 
 	return (
 		<>
-			<div className='px-4 md:px-8 w-full flex justify-center'>
+			<div className='px-4 md:px-8 w-full flex justify-center mb-10'>
 				<ul
 					role='tablist'
 					className='max-w-screen-xl mx-auto flex items-center gap-x-6 overflow-x-auto text-sm'

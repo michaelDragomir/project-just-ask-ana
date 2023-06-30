@@ -86,15 +86,21 @@ const MainNewsPage = () => {
 		switch (activeTab) {
 			case 'popularity':
 				return popularArticles.map((item: any, idx: any) => (
-					<li key={idx}>{item.title}</li>
+					<li className='pb-2 list-disc' key={idx}>
+						{item.title}
+					</li>
 				));
 			case 'relevancy':
 				return relevantArticles.map((item: any, idx: any) => (
-					<li key={idx}>{item.title}</li>
+					<li className='pb-2 list-disc' key={idx}>
+						{item.title}
+					</li>
 				));
 			case 'publishedAt':
 				return latestArticles.map((item: any, idx: any) => (
-					<li key={idx}>{item.title}</li>
+					<li className='pb-2 list-disc' key={idx}>
+						{item.title}
+					</li>
 				));
 			default:
 				return null;
@@ -106,7 +112,7 @@ const MainNewsPage = () => {
 			<div>
 				<input
 					required
-					className=' mx-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
+					className='mx-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
 					placeholder='Search...'
 					type='text'
 					value={inputFieldValue}
@@ -117,7 +123,8 @@ const MainNewsPage = () => {
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
-			<div className='pt-9 mx-auto inline-block text-left'>
+			<p className='mb-2'>scroll to reveal more articles</p>
+			<div className='mx-auto inline-block text-left overflow-y-auto h-[32rem] border-4 border-slate-400 rounded-md p-3 min-w-[60%]'>
 				<ul>{displayArticles()}</ul>
 			</div>
 		</>
