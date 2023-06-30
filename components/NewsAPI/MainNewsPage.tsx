@@ -25,11 +25,6 @@ const MainNewsPage = () => {
 	);
 
 	const getNewsArticles = async (queries: any) => {
-		console.log(
-			'URL WITH PARAMS---',
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${activeTab}`,
-		);
-
 		const response = await fetch(
 			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${activeTab}`,
 			{
@@ -123,7 +118,7 @@ const MainNewsPage = () => {
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</div>
-			<p className='mb-2'>scroll to reveal more articles</p>
+			<p className='mb-2 font-semibold'>Scroll to reveal more articles</p>
 			<div className='mx-auto inline-block text-left overflow-y-auto h-[32rem] border-4 border-slate-400 rounded-md p-3 min-w-[60%]'>
 				<ul>{displayArticles()}</ul>
 			</div>
