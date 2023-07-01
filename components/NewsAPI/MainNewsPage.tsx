@@ -73,28 +73,33 @@ const MainNewsPage = () => {
 		setActiveTab(selectedTab);
 	};
 
+	console.log('POPARTS', popularArticles);
+
 	const displayArticles = () => {
 		switch (activeTab) {
 			case 'popularity':
-				return popularArticles.map((item: any, idx: any) => (
-					<li className='pb-2' key={idx}>
-						<Link
-							href={{
-								pathname: '/the-news/popular-articles',
-								query: { popularArticles },
-							}}
-						>
-							{item.title}
-						</Link>
-					</li>
-				));
+				return popularArticles.map((item: any, idx: any) => {
+					console.log('!!!---item', item);
+					return (
+						<li className='pb-2' key={idx}>
+							<Link
+								href={{
+									pathname: `/the-news/popular-articles/`,
+									query: { ...item },
+								}}
+							>
+								{item.title}
+							</Link>
+						</li>
+					);
+				});
 			case 'relevancy':
 				return relevantArticles.map((item: any, idx: any) => (
 					<li className='pb-2' key={idx}>
 						<Link
 							href={{
 								pathname: '/the-news/relevant-articles',
-								query: { ...relevantArticles },
+								query: { ...item },
 							}}
 						>
 							{item.title}
@@ -107,7 +112,7 @@ const MainNewsPage = () => {
 						<Link
 							href={{
 								pathname: '/the-news/latest-articles',
-								query: { ...latestArticles },
+								query: { ...item },
 							}}
 						>
 							{item.title}

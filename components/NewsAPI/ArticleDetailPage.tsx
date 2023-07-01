@@ -1,9 +1,9 @@
-const ArticleDetailPage = ({ context }: any) => {
+const ArticleDetailPage = ({ searchParams }: any) => {
 	// const {
 	// 	searchParams: { title, author, description, publishedAt, content },
 	// } = context;
 
-	console.log('!!!!', context);
+	console.log('!!!!', searchParams);
 	return (
 		<>
 			hello!!!!!
