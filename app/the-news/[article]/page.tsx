@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
 
-const NewsContentPage = (searchParams: any) => {
-	console.log('@@@@', searchParams);
+const NewsContentPage = (context: any) => {
+	console.log('@@@@', context);
 	return (
 		<>
 			<div className='text-center'>
@@ -17,7 +17,7 @@ const NewsContentPage = (searchParams: any) => {
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					<ArticleDetailPage searchParams={searchParams} />
+					<ArticleDetailPage context={context} />
 				</Suspense>
 			</div>
 		</>

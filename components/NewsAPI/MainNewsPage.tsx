@@ -84,7 +84,9 @@ const MainNewsPage = () => {
 						<li className='pb-2' key={idx}>
 							<Link
 								href={{
-									pathname: `/the-news/popular-articles/`,
+									pathname: `/the-news/popular-article=${encodeURIComponent(
+										item.title.replace(/\+/g, ' '),
+									)}`,
 									query: { ...item },
 								}}
 							>
@@ -98,7 +100,7 @@ const MainNewsPage = () => {
 					<li className='pb-2' key={idx}>
 						<Link
 							href={{
-								pathname: '/the-news/relevant-articles',
+								pathname: `/the-news/relevant-article=${item.title}`,
 								query: { ...item },
 							}}
 						>
@@ -111,7 +113,7 @@ const MainNewsPage = () => {
 					<li className='pb-2' key={idx}>
 						<Link
 							href={{
-								pathname: '/the-news/latest-articles',
+								pathname: `/the-news/latest-article=${item.title}`,
 								query: { ...item },
 							}}
 						>
