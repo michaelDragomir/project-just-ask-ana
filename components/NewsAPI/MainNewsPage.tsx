@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
+import Link from 'next/link';
 import { SlMagnifier } from 'react-icons/sl';
 
 const MainNewsPage = () => {
@@ -76,26 +77,51 @@ const MainNewsPage = () => {
 		switch (activeTab) {
 			case 'popularity':
 				return popularArticles.map((item: any, idx: any) => (
-					<li className='pb-2 list-disc' key={idx}>
-						{item.title}
+					<li className='pb-2' key={idx}>
+						<Link
+							href={{
+								pathname: '/the-news/popular-articles',
+								query: { popularArticles },
+							}}
+						>
+							{item.title}
+						</Link>
 					</li>
 				));
 			case 'relevancy':
 				return relevantArticles.map((item: any, idx: any) => (
-					<li className='pb-2 list-disc' key={idx}>
-						{item.title}
+					<li className='pb-2' key={idx}>
+						<Link
+							href={{
+								pathname: '/the-news/relevant-articles',
+								query: { ...relevantArticles },
+							}}
+						>
+							{item.title}
+						</Link>
 					</li>
 				));
 			case 'publishedAt':
 				return latestArticles.map((item: any, idx: any) => (
-					<li className='pb-2 list-disc' key={idx}>
-						{item.title}
+					<li className='pb-2' key={idx}>
+						<Link
+							href={{
+								pathname: '/the-news/latest-articles',
+								query: { ...latestArticles },
+							}}
+						>
+							{item.title}
+						</Link>
 					</li>
 				));
 			default:
 				return null;
 		}
 	};
+
+	if (!popularArticles || !relevantArticles || !latestArticles) {
+		return null;
+	}
 
 	return (
 		<>
@@ -115,7 +141,7 @@ const MainNewsPage = () => {
 			</div>
 			<p className='mb-2 font-semibold'>Scroll to reveal more articles</p>
 			<div className='mx-auto inline-block text-left overflow-y-auto h-[32rem] border-4 border-slate-400 rounded-md p-3 min-w-[60%]'>
-				<ul>{displayArticles()}</ul>
+				<ul className='list-disc pl-3'>{displayArticles()}</ul>
 			</div>
 		</>
 	);

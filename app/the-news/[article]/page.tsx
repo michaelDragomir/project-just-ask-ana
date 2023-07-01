@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
-// import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
+import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
 
-const DetailPage = (context: any) => {
+const NewsContentPage = (context: any) => {
+	console.log('@@', context);
 	return (
 		<>
 			<div className='text-center'>
@@ -16,11 +17,11 @@ const DetailPage = (context: any) => {
 					</Link>
 				</div>
 				<Suspense fallback={<div>Loading News Info...</div>}>
-					{/* <ArticleDetailPage context={context} /> */}
+					<ArticleDetailPage context={context} />
 				</Suspense>
 			</div>
 		</>
 	);
 };
 
-export default DetailPage;
+export default NewsContentPage;

@@ -1,15 +1,17 @@
 const ArticleDetailPage = ({ context }: any) => {
-	const {
-		searchParams: { title, author, description, publishedAt, content },
-	} = context;
+	// const {
+	// 	searchParams: { title, author, description, publishedAt, content },
+	// } = context;
 
+	console.log('!!!!', context);
 	return (
 		<>
-			<div>{title}</div>
+			hello!!!!!
+			{/* <div>{title}</div>
 			<div>{author}</div>
 			<div>{description}</div>
 			<div>{publishedAt}</div>
-			<div>{content}</div>
+			<div>{content}</div> */}
 		</>
 	);
 };
