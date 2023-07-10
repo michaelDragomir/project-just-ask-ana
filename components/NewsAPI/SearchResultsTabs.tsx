@@ -1,7 +1,6 @@
 'use client';
 
 import TabSlider from './TabSlider';
-// import { SlBookOpen, SlFire, SlCalender } from 'react-icons/sl';
 import {
 	AiOutlineFire,
 	AiTwotoneFire,

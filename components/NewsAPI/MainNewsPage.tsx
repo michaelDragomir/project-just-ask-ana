@@ -79,7 +79,6 @@ const MainNewsPage = () => {
 		switch (activeTab) {
 			case 'popularity':
 				return popularArticles.map((item: any, idx: any) => {
-					console.log('!!!---item', item);
 					return (
 						<li className='pb-2' key={idx}>
 							<Link
