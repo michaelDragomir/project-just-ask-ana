@@ -22,13 +22,10 @@ const MainNewsPage = () => {
 
 	const getNewsArticles = async (queries: any) => {
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}&domains=cnn.com,msnbc.com&sortBy=${activeTab}`,
+			`https://newsapi.org/v2/everything?q=${queries}+US&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
-					'Access-Control-Allow-Origin': '*',
-					'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-					'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 				},
 				next: { revalidate: 7200 },
 			},
@@ -75,8 +72,6 @@ const MainNewsPage = () => {
 
 		setActiveTab(selectedTab);
 	};
-
-	console.log('POPARTS', popularArticles);
 
 	const displayArticles = () => {
 		switch (activeTab) {
