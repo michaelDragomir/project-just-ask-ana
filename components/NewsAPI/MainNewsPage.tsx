@@ -26,6 +26,7 @@ const MainNewsPage = () => {
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+					'Access-Control-Allow-Origin': '*',
 				},
 				next: { revalidate: 7200 },
 				mode: 'cors',
