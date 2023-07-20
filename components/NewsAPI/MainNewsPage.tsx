@@ -22,14 +22,13 @@ const MainNewsPage = () => {
 
 	const getNewsArticles = async (queries: any) => {
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}+US&sortBy=${activeTab}`,
+			`/api/everything?q=${queries}+US&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
 					'Access-Control-Allow-Origin': '*',
 				},
 				next: { revalidate: 7200 },
-				mode: 'cors',
 			},
 		);
 		const { articles } = await response.json();
