@@ -28,6 +28,7 @@ const MainNewsPage = () => {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
 				},
 				next: { revalidate: 7200 },
+				mode: 'cors',
 			},
 		);
 		const { articles } = await response.json();
