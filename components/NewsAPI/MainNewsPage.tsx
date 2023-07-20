@@ -26,6 +26,9 @@ const MainNewsPage = () => {
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+					'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 				},
 				next: { revalidate: 7200 },
 			},
