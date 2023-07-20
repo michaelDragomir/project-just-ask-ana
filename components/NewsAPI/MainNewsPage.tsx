@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 import Link from 'next/link';
 import { SlMagnifier } from 'react-icons/sl';
+// import proxy from '@/server/setUpProxy';
 
 const MainNewsPage = () => {
 	const [popularArticles, setPopularArticles] = useState<any>([]);
@@ -22,13 +23,14 @@ const MainNewsPage = () => {
 
 	const getNewsArticles = async (queries: any) => {
 		const response = await fetch(
-			`/api/everything?q=${queries}+US&sortBy=${activeTab}`,
+			`https://newsapi.org/v2/everything?q=${queries}+US&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
-					'Access-Control-Allow-Origin': '*',
+					// 'Access-Control-Allow-Origin': '*',
 				},
 				next: { revalidate: 7200 },
+				mode: 'cors',
 			},
 		);
 		const { articles } = await response.json();

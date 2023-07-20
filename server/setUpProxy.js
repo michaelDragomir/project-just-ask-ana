@@ -3,7 +3,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const app = express();
 
-const proxyServer = () => {
+const proxy = () => {
 	app.use(
 		'/api',
 		createProxyMiddleware({
@@ -13,4 +13,4 @@ const proxyServer = () => {
 	);
 };
 
-module.exports = proxyServer;
+module.exports = proxy;
