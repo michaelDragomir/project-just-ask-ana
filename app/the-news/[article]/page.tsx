@@ -4,7 +4,6 @@ import Link from 'next/link';
 import ArticleDetailPage from '@/components/NewsAPI/ArticleDetailPage';
 
 const NewsContentPage = (context: any) => {
-	console.log('@@@@', context);
 	return (
 		<>
 			<div className='text-center'>
