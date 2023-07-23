@@ -12,8 +12,6 @@ const MainNewsPage = () => {
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [activeTab, setActiveTab] = useState<string>('popularity');
 
-	console.log('popularArticles!!!', popularArticles);
-
 	const popRef = useRef(false);
 	const relRef = useRef(false);
 	const latestRef = useRef(false);
@@ -22,35 +20,36 @@ const MainNewsPage = () => {
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
+	const fetchNews = async (query: any) => {
+		const response = await fetch(`/api/news/${query}+us/${activeTab}`);
+		const { articles } = await response.json();
+		switch (activeTab) {
+			case 'popularity':
+				if (!popRef.current) {
+					setPopularArticles(articles);
+					relRef.current = true;
+				}
+				break;
+			case 'relevancy':
+				if (!relRef.current) {
+					setRelevantArticles(articles);
+					relRef.current = true;
+				}
+				break;
+			case 'publishedAt':
+				if (!latestRef.current) {
+					setLatestArticles(articles);
+					latestRef.current = true;
+				}
+				break;
+			default:
+				return null;
+		}
+	};
+
 	useEffect(() => {
-		const fetchNews = async (queries: any) => {
-			const response = await fetch(`/api/news/${queries}+us/${activeTab}`);
-			const { articles } = await response.json();
-			switch (activeTab) {
-				case 'popularity':
-					if (!popRef.current) {
-						setPopularArticles(articles);
-						relRef.current = true;
-					}
-					break;
-				case 'relevancy':
-					if (!relRef.current) {
-						setRelevantArticles(articles);
-						relRef.current = true;
-					}
-					break;
-				case 'publishedAt':
-					if (!latestRef.current) {
-						setLatestArticles(articles);
-						latestRef.current = true;
-					}
-					break;
-				default:
-					return null;
-			}
-		};
 		fetchNews(enodedURLValue);
-	}, [activeTab, inputFieldValue]);
+	}, [activeTab]);
 
 	const onChangeValueHandler = (e: any) => {
 		const { value } = e.target;
@@ -63,6 +62,11 @@ const MainNewsPage = () => {
 		latestRef.current = false;
 
 		setActiveTab(selectedTab);
+	};
+
+	const handleClick = async (e: any) => {
+		e.preventDefault();
+		fetchNews(enodedURLValue);
 	};
 
 	const displayArticles = () => {
@@ -121,7 +125,7 @@ const MainNewsPage = () => {
 
 	return (
 		<>
-			<div>
+			<form onSubmit={handleClick} noValidate>
 				<input
 					required
 					className='mx-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
@@ -134,7 +138,7 @@ const MainNewsPage = () => {
 					<SlMagnifier className='w-4 h-4 absolute bottom-7 left-[70px] text-slate-400' />
 				</button>
 				<SearchResultsTabs handleTabClick={handleTabClick} />
-			</div>
+			</form>
 			<p className='mb-2 font-semibold'>Scroll to reveal more articles</p>
 			<div className='mx-auto inline-block text-left overflow-y-auto h-[32rem] border-4 border-slate-400 rounded-md p-3 min-w-[60%]'>
 				<ul className='list-disc pl-3'>{displayArticles()}</ul>

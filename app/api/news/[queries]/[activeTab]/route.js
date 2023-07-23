@@ -7,7 +7,7 @@ export const GET = async (req, { params }) => {
 	console.log('activeTab!!!', activeTab);
 	try {
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}+us&sortBy=${activeTab}`,
+			`https://newsapi.org/v2/everything?q=${queries}&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
