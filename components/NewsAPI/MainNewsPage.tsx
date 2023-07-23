@@ -12,6 +12,8 @@ const MainNewsPage = () => {
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [activeTab, setActiveTab] = useState<string>('popularity');
 
+	console.log('popularArticles!!!', popularArticles);
+
 	const popRef = useRef(false);
 	const relRef = useRef(false);
 	const latestRef = useRef(false);
@@ -20,50 +22,34 @@ const MainNewsPage = () => {
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
-	// const getNewsArticles = async (queries: any) => {
-	// 	const response = await fetch(
-	// 		`https://newsapi.org/v2/everything?q=${queries}+US&sortBy=${activeTab}`,
-	// 		{
-	// 			headers: {
-	// 				'x-api-key': '373a44e44cde4b79bca78c553bcead34',
-	// 			},
-	// 			next: { revalidate: 7200 },
-	// 		},
-	// 	);
-	// 	const { articles } = await response.json();
-
-	// 	switch (activeTab) {
-	// 		case 'popularity':
-	// 			if (!popRef.current) {
-	// 				setPopularArticles(articles);
-	// 				relRef.current = true;
-	// 			}
-	// 			break;
-	// 		case 'relevancy':
-	// 			if (!relRef.current) {
-	// 				setRelevantArticles(articles);
-	// 				relRef.current = true;
-	// 			}
-	// 			break;
-	// 		case 'publishedAt':
-	// 			if (!latestRef.current) {
-	// 				setLatestArticles(articles);
-	// 				latestRef.current = true;
-	// 			}
-	// 			break;
-	// 		default:
-	// 			return null;
-	// 	}
-	// };
-
 	useEffect(() => {
-		const fetchNews = async () => {
-			const response = await fetch('/api/news');
-			const data = await response.json();
-			console.log('!!!!------', data);
+		const fetchNews = async (queries: any) => {
+			const response = await fetch(`/api/news/${queries}+us/${activeTab}`);
+			const { articles } = await response.json();
+			switch (activeTab) {
+				case 'popularity':
+					if (!popRef.current) {
+						setPopularArticles(articles);
+						relRef.current = true;
+					}
+					break;
+				case 'relevancy':
+					if (!relRef.current) {
+						setRelevantArticles(articles);
+						relRef.current = true;
+					}
+					break;
+				case 'publishedAt':
+					if (!latestRef.current) {
+						setLatestArticles(articles);
+						latestRef.current = true;
+					}
+					break;
+				default:
+					return null;
+			}
 		};
-		fetchNews();
-		// getNewsArticles(enodedURLValue);
+		fetchNews(enodedURLValue);
 	}, [activeTab, inputFieldValue]);
 
 	const onChangeValueHandler = (e: any) => {

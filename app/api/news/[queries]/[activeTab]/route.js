@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 
-export const GET = async (req, res) => {
+export const GET = async (req, { params }) => {
+	const { queries, activeTab } = params;
+	console.log('params!!!', params);
+	console.log('queries!!!', queries);
+	console.log('activeTab!!!', activeTab);
 	try {
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=bitcoin&sortBy=popularity`,
+			`https://newsapi.org/v2/everything?q=${queries}+us&sortBy=${activeTab}`,
 			{
 				headers: {
 					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
