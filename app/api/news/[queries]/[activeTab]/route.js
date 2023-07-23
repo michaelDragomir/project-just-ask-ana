@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const GET = async (req, { params }) => {
 	const { queries, activeTab } = params;
-	console.log('params!!!', params);
-	console.log('queries!!!', queries);
-	console.log('activeTab!!!', activeTab);
+
 	try {
 		const response = await fetch(
 			`https://newsapi.org/v2/everything?q=${queries}&sortBy=${activeTab}`,
