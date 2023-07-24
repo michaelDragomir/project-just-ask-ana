@@ -125,20 +125,27 @@ const MainNewsPage = () => {
 
 	return (
 		<>
-			<form onSubmit={handleClick} noValidate>
+			<form
+				onSubmit={handleClick}
+				noValidate
+				className='py-6 text-center flex justify-center items-center'
+			>
 				<input
 					required
-					className='mx-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
+					className='placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
 					placeholder='Search...'
 					type='text'
 					value={inputFieldValue}
 					onChange={(e) => onChangeValueHandler(e)}
 				/>
-				<button className='relative' type='submit'>
-					<SlMagnifier className='w-4 h-4 absolute bottom-7 left-[70px] text-slate-400' />
+				<button
+					type='submit'
+					className='rounded-lg border border-gray-700 bg-gray-700 px-3 py-2 ml-4 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-900 hover:bg-gray-900 focus:ring focus:ring-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300'
+				>
+					Search
 				</button>
-				<SearchResultsTabs handleTabClick={handleTabClick} />
 			</form>
+			<SearchResultsTabs handleTabClick={handleTabClick} />
 			<p className='mb-2 font-semibold'>Scroll to reveal more articles</p>
 			<div className='mx-auto inline-block text-left overflow-y-auto h-[32rem] border-4 border-slate-400 rounded-md p-3 min-w-[60%]'>
 				<ul className='list-disc pl-3'>{displayArticles()}</ul>
