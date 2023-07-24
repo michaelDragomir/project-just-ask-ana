@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import SearchResultsTabs from '@/components/NewsAPI/SearchResultsTabs';
 import Link from 'next/link';
-import { SlMagnifier } from 'react-icons/sl';
 
 const MainNewsPage = () => {
 	const [popularArticles, setPopularArticles] = useState<any>([]);
@@ -64,7 +63,7 @@ const MainNewsPage = () => {
 		setActiveTab(selectedTab);
 	};
 
-	const handleClick = async (e: any) => {
+	const handleSubmitFormClick = async (e: any) => {
 		e.preventDefault();
 		fetchNews(enodedURLValue);
 	};
@@ -126,7 +125,7 @@ const MainNewsPage = () => {
 	return (
 		<>
 			<form
-				onSubmit={handleClick}
+				onSubmit={handleSubmitFormClick}
 				noValidate
 				className='py-6 text-center flex justify-center items-center'
 			>
