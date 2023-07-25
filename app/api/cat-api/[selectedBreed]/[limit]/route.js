@@ -8,8 +8,7 @@ export const GET = async (req, { params }) => {
 			`https://api.thecatapi.com/v1/images/search?${selectedBreed}&${limit}`,
 			{
 				headers: {
-					'x-api-key':
-						'live_d7Zz8FWOCt9MQqOtmoBNTMS1R31Q2Yn6RAVcjf2z2guhPU2pQ14Z0jcfum5Evw7I',
+					'x-api-key': process.env.CAT_API_KEY,
 				},
 				cache: 'no-store',
 			},

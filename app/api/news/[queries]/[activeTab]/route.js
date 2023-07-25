@@ -8,7 +8,7 @@ export const GET = async (req, { params }) => {
 			`https://newsapi.org/v2/everything?q=${queries}&${activeTab}`,
 			{
 				headers: {
-					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+					'x-api-key': process.env.NEWS_API_KEY,
 				},
 				next: { revalidate: 3600 },
 			},
