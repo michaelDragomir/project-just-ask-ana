@@ -10,13 +10,7 @@ const MainPage = () => {
 
 	useEffect(() => {
 		const getAllBreeds = async () => {
-			const response = await fetch('https://api.thecatapi.com/v1/breeds', {
-				headers: {
-					'x-api-key':
-						'live_d7Zz8FWOCt9MQqOtmoBNTMS1R31Q2Yn6RAVcjf2z2guhPU2pQ14Z0jcfum5Evw7I',
-				},
-				cache: 'no-store',
-			});
+			const response = await fetch('/api/cat-api');
 
 			if (!response.ok) {
 				throw new Error('Failed to fetch data');
@@ -32,16 +26,9 @@ const MainPage = () => {
 		getSpecificBreeds('abys', 3);
 	}, []);
 
-	const getSpecificBreeds = async (selectedbreed: any, limit: number) => {
+	const getSpecificBreeds = async (selectedBreed: any, limit: number) => {
 		const response = await fetch(
-			`https://api.thecatapi.com/v1/images/search?breed_ids=${selectedbreed}&limit=${limit}`,
-			{
-				headers: {
-					'x-api-key':
-						'live_d7Zz8FWOCt9MQqOtmoBNTMS1R31Q2Yn6RAVcjf2z2guhPU2pQ14Z0jcfum5Evw7I',
-				},
-				cache: 'no-store',
-			},
+			`/api/cat-api/breed_ids=${selectedBreed}/limit=${limit}`,
 		);
 
 		if (!response.ok) {

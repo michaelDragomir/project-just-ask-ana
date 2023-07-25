@@ -40,13 +40,11 @@ const MainPage = () => {
 	const flattenLocationObject = useCallback(
 		(locations: Location[]) => {
 			const data = [];
-			for (const { street, coordinates, timezone, ...rest } of locations)
+			for (const { street, timezone, ...rest } of locations)
 				data.push({
 					...rest,
 					street_name: street.name,
 					number: street.number,
-					latitude: coordinates.latitude,
-					longitude: coordinates.longitude,
 				});
 			const flattenedLocationHeaders = getObjectKeys(data[0]);
 			return { headers: flattenedLocationHeaders, data };
@@ -177,6 +175,7 @@ const MainPage = () => {
 				This API fetches data, sorts by headers, and searches for specific a
 				location.
 			</h4>
+			{/* do anther table and paginate some users..display page number..when clicked. takes them to more info */}
 			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
 					<tr className='bg-slate-400'>

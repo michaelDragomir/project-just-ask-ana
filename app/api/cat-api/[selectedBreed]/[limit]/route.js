@@ -1,20 +1,20 @@
 import { NextResponse } from 'next/server';
 
 export const GET = async (req, { params }) => {
-	const { queries, activeTab } = params;
+	const { selectedBreed, limit } = params;
 
 	try {
 		const response = await fetch(
-			`https://newsapi.org/v2/everything?q=${queries}&${activeTab}`,
+			`https://api.thecatapi.com/v1/images/search?${selectedBreed}&${limit}`,
 			{
 				headers: {
-					'x-api-key': '373a44e44cde4b79bca78c553bcead34',
+					'x-api-key':
+						'live_d7Zz8FWOCt9MQqOtmoBNTMS1R31Q2Yn6RAVcjf2z2guhPU2pQ14Z0jcfum5Evw7I',
 				},
-				next: { revalidate: 3600 },
+				cache: 'no-store',
 			},
 		);
 		const data = await response.json();
-
 		return NextResponse.json(data);
 	} catch (error) {
 		return new Response('no data', { status: 500 });

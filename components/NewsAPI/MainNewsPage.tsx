@@ -19,8 +19,8 @@ const MainNewsPage = () => {
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
-	const fetchNews = async (query: any) => {
-		const response = await fetch(`/api/news/${query}+us/${activeTab}`);
+	const fetchNews = async (queries: any) => {
+		const response = await fetch(`/api/news/${queries}+us/sortBy=${activeTab}`);
 		const { articles } = await response.json();
 		switch (activeTab) {
 			case 'popularity':
