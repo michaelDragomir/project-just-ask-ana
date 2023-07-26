@@ -181,26 +181,31 @@ const MainPage = () => {
 					className={`${
 						currentPage === 1 ? 'text-gray-400' : 'text-gray-700'
 					} p-4 inline-flex items-center gap-2 rounded-md`}
-					href='#'
 				>
-					<span aria-hidden='true'>«</span>
+					<span>«</span>
 					<button onClick={previousPageOnClickHandler}>Previous</button>
 				</a>
 				<a
-					className='w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full'
+					className={`${
+						currentPage === 1 ? 'bg-gray-600 text-white' : 'text-gray-500'
+					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
 					href='#'
 					aria-current='page'
 				>
 					1
 				</a>
 				<a
-					className='w-10 h-10 text-gray-500 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full'
+					className={`${
+						currentPage === 2 ? 'bg-gray-600 text-white' : 'text-gray-500'
+					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
 					href='#'
 				>
 					2
 				</a>
 				<a
-					className='w-10 h-10 text-gray-500 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full'
+					className={`${
+						currentPage === 3 ? 'bg-gray-600 text-white' : 'text-gray-500'
+					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
 					href='#'
 				>
 					3
@@ -209,10 +214,9 @@ const MainPage = () => {
 					className={`${
 						currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
 					} p-4 inline-flex items-center gap-2 rounded-md`}
-					href='#'
 				>
 					<button onClick={nextPageOnClickHandler}>Next</button>
-					<span aria-hidden='true'>»</span>
+					<span>»</span>
 				</a>
 			</nav>
 			{userPageItems.map((user: any, idx: number) => (
