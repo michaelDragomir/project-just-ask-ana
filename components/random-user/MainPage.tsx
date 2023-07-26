@@ -9,19 +9,26 @@ enum SortingDirection {
 	UNSORTED = 'UNSORTED',
 }
 
+const MAX_PAGES = 3;
+const USERS_PER_PAGE = 5;
+
 const MainPage = () => {
 	type Location = any;
 
+	const hasMounted = useRef(false);
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
+	const [currentPage, setCurrentPage] = useState<any>(1);
 	const [modalOpen, setmodalOpen] = useState<any>(false);
-	const hasMounted = useRef(false);
 	const [sortingDirection, setSortingDirection] = useState<any>({});
 	const [flattenedLocations, setFlattenedLocations] = useState<any>({
 		headers: [],
 		data: [],
 	});
 	const { headers, data } = flattenedLocations;
+
+	const userPage = (currentPage - 1) * USERS_PER_PAGE;
+	const userPageItems = users.slice(userPage, userPage + USERS_PER_PAGE);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -56,7 +63,6 @@ const MainPage = () => {
 		const response = await fetch('/api/random-user');
 
 		const data = await response.json();
-		console.log('DATA', data);
 		const { results } = data;
 		setUsers(results);
 
@@ -154,8 +160,57 @@ const MainPage = () => {
 		fetchPeople();
 	};
 
+	const nextPageOnClickHandler = () => {
+		if (currentPage !== MAX_PAGES) {
+			setCurrentPage((prev: any) => prev + 1);
+		}
+		return;
+	};
+
+	const previousPageOnClickHandler = () => {
+		setCurrentPage((prev: any) => prev - 1);
+	};
+
 	return (
 		<>
+			<nav className='flex items-center space-x-2'>
+				<a
+					className='text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md'
+					href='#'
+				>
+					<span aria-hidden='true'>«</span>
+					<button onClick={previousPageOnClickHandler}>Previous</button>
+				</a>
+				<a
+					className='w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full'
+					href='#'
+					aria-current='page'
+				>
+					1
+				</a>
+				<a
+					className='w-10 h-10 text-gray-500 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full'
+					href='#'
+				>
+					2
+				</a>
+				<a
+					className='w-10 h-10 text-gray-500 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full'
+					href='#'
+				>
+					3
+				</a>
+				<a
+					className='text-gray-500 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md'
+					href='#'
+				>
+					<button onClick={nextPageOnClickHandler}>Next</button>
+					<span aria-hidden='true'>»</span>
+				</a>
+			</nav>
+			{userPageItems.map((user: any, idx: number) => (
+				<div key={idx}>{user.name.first}</div>
+			))}
 			{modalOpen && <Modal />}
 			<input
 				className='mr-3'
