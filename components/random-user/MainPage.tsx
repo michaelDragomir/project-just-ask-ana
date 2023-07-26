@@ -168,6 +168,9 @@ const MainPage = () => {
 	};
 
 	const previousPageOnClickHandler = () => {
+		if (currentPage <= 1) {
+			return;
+		}
 		setCurrentPage((prev: any) => prev - 1);
 	};
 
@@ -175,7 +178,9 @@ const MainPage = () => {
 		<>
 			<nav className='flex items-center space-x-2'>
 				<a
-					className='text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md'
+					className={`${
+						currentPage === 1 ? 'text-gray-400' : 'text-gray-700'
+					} p-4 inline-flex items-center gap-2 rounded-md`}
 					href='#'
 				>
 					<span aria-hidden='true'>«</span>
@@ -201,7 +206,9 @@ const MainPage = () => {
 					3
 				</a>
 				<a
-					className='text-gray-500 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md'
+					className={`${
+						currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
+					} p-4 inline-flex items-center gap-2 rounded-md`}
 					href='#'
 				>
 					<button onClick={nextPageOnClickHandler}>Next</button>
