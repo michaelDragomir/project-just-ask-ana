@@ -45,13 +45,16 @@ const MainPage = () => {
 	}, []);
 
 	const flattenLocationObject = useCallback(
-		(locations: Location[]) => {
+		(location: Location[]) => {
 			const data = [];
-			for (const { street, timezone, ...rest } of locations)
+			for (const { street, city, state, country, postcode } of location)
 				data.push({
-					...rest,
 					street_name: street.name,
-					number: street.number,
+					street_number: street.number,
+					city: city,
+					state: state,
+					country: country,
+					postcode: postcode,
 				});
 			const flattenedLocationHeaders = getObjectKeys(data[0]);
 			return { headers: flattenedLocationHeaders, data };
