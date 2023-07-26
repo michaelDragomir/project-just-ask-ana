@@ -9,9 +9,6 @@ enum SortingDirection {
 	UNSORTED = 'UNSORTED',
 }
 
-const MAX_PAGES = 3;
-const USERS_PER_PAGE = 5;
-
 const MainPage = () => {
 	type Location = any;
 
@@ -27,8 +24,13 @@ const MainPage = () => {
 	});
 	const { headers, data } = flattenedLocations;
 
+	const USERS_PER_PAGE = 5;
+	const MAX_PAGES = Math.ceil(users.length / USERS_PER_PAGE);
+
 	const userPage = (currentPage - 1) * USERS_PER_PAGE;
 	const userPageItems = users.slice(userPage, userPage + USERS_PER_PAGE);
+
+	const pageNumbers = Array.from({ length: MAX_PAGES }, (v, i: any) => i + 1);
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -187,27 +189,16 @@ const MainPage = () => {
 				>
 					<button onClick={previousPageOnClickHandler}>« Previous</button>
 				</div>
-				<div
-					className={`${
-						currentPage === 1 ? 'bg-gray-600 text-white' : 'text-gray-500'
-					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-				>
-					<button onClick={() => setCurrentPage(1)}>1</button>
-				</div>
-				<div
-					className={`${
-						currentPage === 2 ? 'bg-gray-600 text-white' : 'text-gray-500'
-					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-				>
-					<button onClick={() => setCurrentPage(2)}>2</button>
-				</div>
-				<div
-					className={`${
-						currentPage === 3 ? 'bg-gray-600 text-white' : 'text-gray-500'
-					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-				>
-					<button onClick={() => setCurrentPage(3)}>3</button>
-				</div>
+				{pageNumbers.map((num: any, idx: any) => (
+					<div
+						key={idx}
+						className={`${
+							num === currentPage ? 'bg-gray-600 text-white' : 'text-gray-500'
+						} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
+					>
+						<button onClick={() => setCurrentPage(num)}>{num}</button>
+					</div>
+				))}
 				<div
 					className={`${
 						currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
