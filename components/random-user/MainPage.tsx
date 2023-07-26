@@ -179,52 +179,48 @@ const MainPage = () => {
 
 	return (
 		<>
-			<nav className='flex items-center space-x-2'>
-				<a
+			<div className='flex items-center space-x-2'>
+				<div
 					className={`${
 						currentPage === 1 ? 'text-gray-400' : 'text-gray-700'
 					} p-4 inline-flex items-center gap-2 rounded-md`}
 				>
-					<span>«</span>
-					<button onClick={previousPageOnClickHandler}>Previous</button>
-				</a>
-				<a
+					<button onClick={previousPageOnClickHandler}>« Previous</button>
+				</div>
+				<div
 					className={`${
 						currentPage === 1 ? 'bg-gray-600 text-white' : 'text-gray-500'
 					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-					href='#'
-					aria-current='page'
 				>
-					1
-				</a>
-				<a
+					<button onClick={() => setCurrentPage(1)}>1</button>
+				</div>
+				<div
 					className={`${
 						currentPage === 2 ? 'bg-gray-600 text-white' : 'text-gray-500'
 					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-					href='#'
 				>
-					2
-				</a>
-				<a
+					<button onClick={() => setCurrentPage(2)}>2</button>
+				</div>
+				<div
 					className={`${
 						currentPage === 3 ? 'bg-gray-600 text-white' : 'text-gray-500'
 					} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-					href='#'
 				>
-					3
-				</a>
-				<a
+					<button onClick={() => setCurrentPage(3)}>3</button>
+				</div>
+				<div
 					className={`${
 						currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
 					} p-4 inline-flex items-center gap-2 rounded-md`}
 				>
-					<button onClick={nextPageOnClickHandler}>Next</button>
-					<span>»</span>
-				</a>
-			</nav>
-			{userPageItems.map((user: any, idx: number) => (
-				<div key={idx}>{user.name.first}</div>
-			))}
+					<button onClick={nextPageOnClickHandler}>Next »</button>
+				</div>
+			</div>
+			<div>
+				{userPageItems.map((user: any, idx: number) => (
+					<div key={idx}>{user.name.first}</div>
+				))}
+			</div>
 			{modalOpen && <Modal />}
 			<input
 				className='mr-3'
