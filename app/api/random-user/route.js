@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const GET = async (req, res) => {
 	try {
-		const response = await fetch('https://randomuser.me/api/?results=15');
+		const response = await fetch('https://randomuser.me/api/?results=20');
 
 		const data = await response.json();
 		return NextResponse.json(data);

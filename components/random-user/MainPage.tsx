@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Modal from './Modal';
+import Image from 'next/image';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -179,40 +180,57 @@ const MainPage = () => {
 		setCurrentPage((prev: any) => prev - 1);
 	};
 
+	console.log('USERS', users);
+
 	return (
 		<>
-			<div className='flex items-center space-x-2'>
-				<div
-					className={`${
-						currentPage === 1 ? 'text-gray-400' : 'text-gray-700'
-					} p-4 inline-flex items-center gap-2 rounded-md`}
-				>
-					<button onClick={previousPageOnClickHandler}>« Previous</button>
-				</div>
-				{pageNumbers.map((num: any, idx: any) => (
-					<div
-						key={idx}
-						className={`${
-							num === currentPage ? 'bg-gray-600 text-white' : 'text-gray-500'
-						} w-10 h-10 p-4 inline-flex items-center text-sm font-medium rounded-full`}
-					>
-						<button onClick={() => setCurrentPage(num)}>{num}</button>
-					</div>
-				))}
-				<div
-					className={`${
-						currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
-					} p-4 inline-flex items-center gap-2 rounded-md`}
-				>
-					<button onClick={nextPageOnClickHandler}>Next »</button>
-				</div>
-			</div>
-			<div>
-				{userPageItems.map((user: any, idx: number) => (
-					<div key={idx}>{user.name.first}</div>
-				))}
-			</div>
 			{modalOpen && <Modal />}
+			<h4 className='mb-3'>
+				This API paginates users, fetches data, sorts by headers, and searches
+				for specific items.
+			</h4>
+			<div className='flex justify-center flex-col items-center space-x-2'>
+				<ul className='flex'>
+					{userPageItems.map((user: any, idx: number) => (
+						<li className='p-4 pb-0'>
+							<Image
+								key={user}
+								src={user.picture.thumbnail}
+								width={50}
+								height={50}
+								alt='user picture'
+							/>
+							<div key={idx}>{user.name.first}</div>
+						</li>
+					))}
+				</ul>
+				<div className='mb-5'>
+					<div
+						className={`${
+							currentPage === 1 ? 'text-gray-400' : 'text-gray-700'
+						} p-4 inline-flex items-center gap-2 rounded-md`}
+					>
+						<button onClick={previousPageOnClickHandler}>« Previous</button>
+					</div>
+					{pageNumbers.map((num: any, idx: any) => (
+						<div
+							key={idx}
+							className={`${
+								num === currentPage ? 'bg-gray-600 text-white' : 'text-gray-500'
+							} h-3 p-4 inline-flex items-center text-sm font-medium rounded-full`}
+						>
+							<button onClick={() => setCurrentPage(num)}>{num}</button>
+						</div>
+					))}
+					<div
+						className={`${
+							currentPage === MAX_PAGES ? 'text-gray-400' : 'text-gray-700'
+						} p-4 inline-flex items-center gap-2 rounded-md`}
+					>
+						<button onClick={nextPageOnClickHandler}>Next »</button>
+					</div>
+				</div>
+			</div>
 			<input
 				className='mr-3'
 				type='text'
@@ -227,11 +245,6 @@ const MainPage = () => {
 			>
 				Refetch Data
 			</button>
-			<h4 className='mb-3'>
-				This API fetches data, sorts by headers, and searches for specific a
-				location.
-			</h4>
-			{/* do anther table and paginate some users..display page number..when clicked. takes them to more info */}
 			<table className='mx-auto table-fixed border-collapse border-spacing-2 border-slate-500'>
 				<thead>
 					<tr className='bg-slate-400'>
