@@ -192,9 +192,9 @@ const MainPage = () => {
 			<div className='flex justify-center flex-col items-center space-x-2'>
 				<ul className='flex'>
 					{userPageItems.map((user: any, idx: number) => (
-						<li className='p-4 pb-0'>
+						<li key={user.id.value} className='p-4 pb-0'>
 							<Image
-								key={user}
+								key={user.id.name}
 								src={user.picture.thumbnail}
 								width={50}
 								height={50}

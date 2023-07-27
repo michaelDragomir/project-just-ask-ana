@@ -15,7 +15,7 @@ const MainNewsPage = () => {
 	const relRef = useRef(false);
 	const latestRef = useRef(false);
 
-	const enodedURLValue = encodeURIComponent(
+	const encodedURLValue = encodeURIComponent(
 		inputFieldValue.replace(/\s+/g, '+'),
 	);
 
@@ -47,7 +47,7 @@ const MainNewsPage = () => {
 	};
 
 	useEffect(() => {
-		fetchNews(enodedURLValue);
+		fetchNews(encodedURLValue);
 	}, [activeTab]);
 
 	const onChangeValueHandler = (e: any) => {
@@ -65,7 +65,7 @@ const MainNewsPage = () => {
 
 	const handleSubmitFormClick = async (e: any) => {
 		e.preventDefault();
-		fetchNews(enodedURLValue);
+		fetchNews(encodedURLValue);
 	};
 
 	const displayArticles = () => {
