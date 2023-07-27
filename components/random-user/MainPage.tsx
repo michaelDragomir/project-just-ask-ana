@@ -192,15 +192,14 @@ const MainPage = () => {
 			<div className='flex justify-center flex-col items-center space-x-2'>
 				<ul className='flex'>
 					{userPageItems.map((user: any, idx: number) => (
-						<li key={user.id.value} className='p-4 pb-0'>
+						<li key={user.phone} className='p-4 pb-0'>
 							<Image
-								key={user.id.name}
 								src={user.picture.thumbnail}
 								width={50}
 								height={50}
 								alt='user picture'
 							/>
-							<div key={idx}>{user.name.first}</div>
+							<div>{user.name.first}</div>
 						</li>
 					))}
 				</ul>
@@ -250,8 +249,8 @@ const MainPage = () => {
 					<tr className='bg-slate-400'>
 						{headers.map((location: any, idx: number) => (
 							<th
-								className='border-slate-600 border px-7 cursor-default'
 								key={idx}
+								className='border-slate-600 border px-7 cursor-default'
 								onClick={() => sortColumn(location)}
 							>
 								<button type='button'>{location}</button>
