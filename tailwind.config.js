@@ -7,6 +7,20 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			keyframes: {
+				slide: {
+					'0%': {
+						transform: 'translateX(100%)',
+					},
+					'100%': {
+						transform: 'translateX(-100%)',
+					},
+				},
+			},
+			animation: {
+				slide: 'slide .5s linear',
+			},
+
 			colors: {
 				blue: '#1fb6ff',
 				purple: '#7e5bef',
