@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { animateScroll } from 'react-scroll';
 import Modal from './Modal';
 import Image from 'next/image';
+import Link from 'next/link';
 
 enum SortingDirection {
 	ASCENDING = 'ASCENDING',
@@ -14,6 +16,8 @@ const MainPage = () => {
 	type Location = any;
 
 	const hasMounted = useRef(false);
+	const scrollRef = useRef<HTMLDivElement>(null);
+
 	const [inputFieldValue, setInputFieldValue] = useState<string>('');
 	const [users, setUsers] = useState<any>([]);
 	const [currentPage, setCurrentPage] = useState<any>(1);
@@ -23,15 +27,27 @@ const MainPage = () => {
 		headers: [],
 		data: [],
 	});
-	const { headers, data } = flattenedLocations;
 
 	const USERS_PER_PAGE = 5;
 	const MAX_PAGES = Math.ceil(users.length / USERS_PER_PAGE);
 
+	const { headers, data } = flattenedLocations;
+
 	const userPage = (currentPage - 1) * USERS_PER_PAGE;
 	const userPageItems = users.slice(userPage, userPage + USERS_PER_PAGE);
-
 	const pageNumbers = Array.from({ length: MAX_PAGES }, (v, i: any) => i + 1);
+
+	const smoothScroll = (direction: any) => {
+		console.log('!!!', scrollRef.current.offsetWidth);
+		const scrollAmount =
+			direction === 'right'
+				? scrollRef.current.offsetWidth
+				: -scrollRef.current.offsetWidth;
+		animateScroll.scrollTo(scrollAmount, {
+			axis: 'x',
+		});
+		console.log('!!!scrollAmount', scrollAmount);
+	};
 
 	const getObjectKeys = useCallback((obj: any) => {
 		let objectKeys: string[] = [];
@@ -169,6 +185,7 @@ const MainPage = () => {
 	const nextPageOnClickHandler = () => {
 		if (currentPage !== MAX_PAGES) {
 			setCurrentPage((prev: any) => prev + 1);
+			smoothScroll('right');
 		}
 		return;
 	};
@@ -178,6 +195,7 @@ const MainPage = () => {
 			return;
 		}
 		setCurrentPage((prev: any) => prev - 1);
+		smoothScroll('left');
 	};
 
 	console.log('USERS', users);
@@ -189,17 +207,22 @@ const MainPage = () => {
 				This API paginates users, fetches data, sorts by headers, and searches
 				for specific items.
 			</h4>
-			<div className='flex justify-center flex-col items-center space-x-2'>
+			<div
+				ref={scrollRef}
+				className='flex justify-center flex-col items-center space-x-2'
+			>
 				<ul className='flex'>
 					{userPageItems.map((user: any, idx: number) => (
 						<li key={user.phone} className='p-4 pb-0'>
-							<Image
-								src={user.picture.thumbnail}
-								width={50}
-								height={50}
-								alt='user picture'
-							/>
-							<div>{user.name.first}</div>
+							<Link href='/random-user/user-profile'>
+								<Image
+									src={user.picture.thumbnail}
+									width={50}
+									height={50}
+									alt='user picture'
+								/>
+								<div>{user.name.first}</div>
+							</Link>
 						</li>
 					))}
 				</ul>
