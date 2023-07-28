@@ -11,14 +11,16 @@ module.exports = {
 				slide: {
 					'0%': {
 						transform: 'translateX(100%)',
+						opacity: 0,
 					},
 					'100%': {
-						transform: 'translateX(-100%)',
+						transform: 'translateX(0)',
+						opacity: 1,
 					},
 				},
 			},
 			animation: {
-				slide: 'slide .5s linear',
+				slide: 'slide .15s linear',
 			},
 
 			colors: {
