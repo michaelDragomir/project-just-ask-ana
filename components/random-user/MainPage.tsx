@@ -67,7 +67,7 @@ const MainPage = () => {
 		[getObjectKeys],
 	);
 
-	const fetchPeople = async () => {
+	const fetchPeople = useCallback(async () => {
 		const response = await fetch('/api/random-user');
 
 		const data = await response.json();
@@ -79,7 +79,7 @@ const MainPage = () => {
 		);
 
 		setFlattenedLocations(getFlattenedLocations);
-	};
+	}, [flattenLocationObject]);
 
 	const getfilteredRows = (rows: any[], searchInputValue: string) => {
 		return rows.filter((row: any) => {
@@ -162,7 +162,7 @@ const MainPage = () => {
 
 			hasMounted.current = true;
 		}
-	}, []);
+	}, [fetchPeople]);
 
 	const refetchDataHandler = () => {
 		fetchPeople();
